@@ -27,7 +27,7 @@ An application designed to inform users on Pokemon types which will help decide 
 ## Usage
 
 ## Technologies
-https://tailwindcss.com/
+https://materializecss.com/
 https://pokeapi.co/docs/v2
 https://www.mediawiki.org/wiki/API:REST_API/Reference
 
