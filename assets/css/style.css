@@ -1,14 +1,11 @@
-.container {
-    display: flex;
-    width: 40%;
-    justify-content: center;
-    flex-direction: column;
+.container-90{
+    width:90%;
+    margin:auto;
 }
 
 #right {
     display: flex;
     flex-direction: column;
-    width: 60%;
 }
 
 p {
@@ -28,4 +25,9 @@ p {
 
 .card-image {
     display: flex;
+}
+
+.card-image>img{
+    width:50% !important;
+    aspect-ratio: 1/1;
 }
