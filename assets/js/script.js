@@ -34,11 +34,52 @@ function getPokeInfo(pokename) {
 }
 
 function getPokeImage(pokename) {
-    let apiURL = `https://cors.iamnd.eu.org/?url=https://bulbapedia.bulbagarden.net/w/api.php?action=query&format=json&prop=info%7Cimages&list=&meta=&imlimit=10`
-    fetch(apiURL).then(function (response) {
-        console.log(response);
+    let apiURL = "https://bulbapedia.bulbagarden.net/w/api.php";
+    let params = {
+        action: "query",
+        format: "json",
+        prop: "images",
+        titles: `${pokename}_(Pokémon)`
+    }
+    apiURL = apiURL + "?origin=*";
+
+    Object.keys(params).forEach(function (key) { apiURL += "&" + key + "=" + params[key]; });
+    
+    fetch(apiURL)
+    .then(function (response){
+        return response.json();
     })
+    .then(function (response){
+        console.log(response.query.pages)
+    })
+    .catch(function (error) {console.log(error); });
 }
+
+
+//Example Function From https://github.com/wikimedia/mediawiki-api-demos
+// var url = "https://en.wikipedia.org/w/api.php";
+
+// var params = {
+//     action: "query",
+//     prop: "images",
+//     titles: "Albert Einstein",
+//     format: "json"
+// };
+
+// url = url + "?origin=*";
+// Object.keys(params).forEach(function (key) { url += "&" + key + "=" + params[key]; });
+
+// fetch(url)
+//     .then(function (response) { return response.json(); })
+//     .then(function (response) {
+//         var pages = response.query.pages;
+//         for (var page in pages) {
+//             for (var img of pages[page].images) {
+//                 console.log(img.title);
+//             }
+//         }
+//     })
+//     .catch(function (error) { console.log(error); });
 
 getPokeInfo(pokeSpecies);
 getPokeImage(pokeSpecies);
