@@ -35,7 +35,7 @@ function getTypeIcons(type) {
 function getPokeInfo(pokeName) {
     // Request url includes a pokemon name that is passed into the function (POKEAPI REQUIRES LOWERCASE POKEMON NAMES)
     let apiURL = `https://pokeapi.co/api/v2/pokemon/${pokeName.toLowerCase()}`
-    
+
     // Sends request to pokeapi
     fetch(apiURL)
         .then(function (response) {
@@ -68,7 +68,7 @@ function getPokeInfo(pokeName) {
 // This function retrieves a pokemon image from bulbapedia and assigns it as the source of the image element provided to the function
 function getPokeImage(pokeName, targetEl) {
     // Base url to build request url from
-    let apiURL = "https://bulbapedia.bulbagarden.net/w/api.php?origin=*"; 
+    let apiURL = "https://bulbapedia.bulbagarden.net/w/api.php?origin=*";
     // Object that holds the keys and parameters to build the request url from
     let params = {
         action: "query",
@@ -80,9 +80,9 @@ function getPokeImage(pokeName, targetEl) {
     }
     // Builds the request url from the keys and parameters provided
     Object.keys(params).forEach(function (key) { apiURL += "&" + key + "=" + params[key]; });
-    
+
     // Sends request to bulbapedia via mediawiki api
-        fetch(apiURL)
+    fetch(apiURL)
         .then(function (response) {
             // Formats the response into a JSON object
             return response.json();
@@ -91,7 +91,8 @@ function getPokeImage(pokeName, targetEl) {
             let pid = data.query.pageids[0];
             targetEl.src = data.query.pages[pid].original.source;
         })
-        .catch(function (error) { console.log(error);
+        .catch(function (error) {
+            console.log(error);
         });
 }
 
