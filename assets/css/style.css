@@ -7,18 +7,13 @@
     font-family: gameFont;
 }
 
-h2 {
+#index-h2 {
     font-size: x-large;
 }
 
 .container-90{
     width:90%;
     margin:auto;
-}
-
-#right {
-    display: flex;
-    flex-direction: column;
 }
 
 #card-left {
@@ -43,7 +38,7 @@ h2 {
     aspect-ratio: 1/1;
 }
 
-p {
+#index-p {
     padding: 20px 0;
 }
 
@@ -73,10 +68,9 @@ p {
     border-radius: 0px;
 }
 
+/*------------------------------Pokedex------------------------------*/
 
-
-
-header {
+#pokedex-header {
     display: flex;
     justify-content: center;
     background-image: linear-gradient(to left, darkblue, lightblue);
@@ -84,7 +78,7 @@ header {
     color: #ffffff;
 }
 
-header h1 {
+#pokedex-h1 {
     margin: 0px;
     padding: 0px;
     font-weight: bold;
@@ -92,51 +86,51 @@ header h1 {
     line-height: 1.2;
 }
 
-main {
+#pokedex-main {
     display: flex;
 }
 
-section {
+.pokedex-section {
     border-style: solid;
     border-width: 3px;
 }
 
-main #left {
+.pokedex-left {
     display: flex;
     justify-content: center;
     width: 20%;
     height: 700px;
 }
 
-main #left aside {
+#pokedex-aside {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
 }
 
-main #left aside p {
+#p-types {
     font-size: 20px;
 }
 
-main #left aside #line {
+#line {
     width: 100%;
     margin: 10px 0px 10px 0px;
     border-bottom: 3px solid lightgray;
 }
 
-main #left aside #types {
+.types {
     display: flex;
     flex-direction: column;
     gap: 10px;
     border-style: none;
 }
 
-main #left aside #home {
+#home-button {
     margin-top: 10px;
 }
 
-main #right {
+.pokedex-right {
     display: flex;
     width: 80%;
     height: 700px;
@@ -144,7 +138,7 @@ main #right {
     padding: 15px;
 }
 
-main #right #pokemon {
+.pokemon {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -154,13 +148,13 @@ main #right #pokemon {
     padding: 10px;
 }
 
-main #right #pokemon #buttons-div{
+#buttons-div{
     display: flex;
     gap: 50px;
 }
 
 
-main #right #display {
+.display {
     display: flex;
     justify-content: center;
     margin: 10px 0px 25px 0px;
@@ -168,16 +162,16 @@ main #right #display {
     height: 50%;
 }
 
-main #right #display img{
+#pokedex-image{
     width: 300px
 }
 
-main #right #details {
+.details {
     width: 95%;
     height: 40%;
 }
 
-main #right #info {
+.info {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -185,22 +179,22 @@ main #right #info {
     padding: 15px;
 }
 
-main #right #info #facts {
+.facts {
     width: 45%;
     height: 45%;
 }
 
-main #right #info #stuff {
+.stuff {
     width: 100%;
     height: 15%;
 }
 
-main #right #info #stuff2 {
+.stuff2 {
     width: 100%;
     height: 25%;
 }
 
-main #right #info #link {
+#link {
     border-style: solid;
     border-width: 3px;
     width: 100%;
