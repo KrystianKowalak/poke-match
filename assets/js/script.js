@@ -29,7 +29,7 @@ function getPokeInfo(pokeName) {
             pokeName.textContent = "Name: " + data.name.toUpperCase().slice(0, 1) + data.name.slice(1);
             pokeType1.textContent = "Type 1: " + data.types[0].type.name.toUpperCase().slice(0, 1) + data.types[0].type.name.slice(1);
             if (data.types.length == 2) {
-                pokeType2.textContent = "Type 2: " + data.types[1].type.name;
+                pokeType2.textContent = "Type 2: " + data.types[1].type.name.toUpperCase().slice(0, 1) + data.types[1].type.name.slice(1);
             }
             // Sets contents to 'N/A' for the pokeType2 element if the pokemon only has one type
             else { pokeType2.textContent = "Type 2: N/A" }
@@ -65,7 +65,8 @@ function getPokeImage(pokeName, targetEl) {
             let pid = data.query.pageids[0];
             targetEl.src = data.query.pages[pid].original.source;
         })
-        .catch(function (error) { console.log(error); });
+        .catch(function (error) { console.log(error);
+        });
 }
 
 getPokeInfo(pokeSpecies); // Requests api information for the pokemon name passed in to the function
