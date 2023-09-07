@@ -20,6 +20,7 @@ function getPokeInfo(pokename) {
             let pokeType2 = document.createElement("h3");
             let pokeID = document.createElement("h3");
 
+            pokeImg.src = getPokeImage(pokeSpecies);
             pokeName.textContent = "Name: " + data.name;
             pokeType1.textContent = "Type 1: " + data.types[0].type.name;
             if (data.types.length == 2) {
@@ -28,7 +29,7 @@ function getPokeInfo(pokename) {
             else { pokeType2.textcontent = "N/A" }
             pokeID.textContent = "ID Number: " + data.id;
 
-            dex.append(pokeName, pokeType1, pokeType2, pokeID);
+            dex.append(pokeImg, pokeName, pokeType1, pokeType2, pokeID);
         })
     })
 }
@@ -50,7 +51,8 @@ function getPokeImage(pokename) {
         return response.json();
     })
     .then(function (response){
-        console.log(response.query.pages)
+        let imgURL = Object.values(response.query.pages)[0].images[2].title
+        console.log(imgURL);
     })
     .catch(function (error) {console.log(error); });
 }
@@ -82,4 +84,4 @@ function getPokeImage(pokename) {
 //     .catch(function (error) { console.log(error); });
 
 getPokeInfo(pokeSpecies);
-getPokeImage(pokeSpecies);
+// getPokeImage(pokeSpecies);
