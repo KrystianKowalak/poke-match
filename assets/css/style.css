@@ -1,0 +1,113 @@
+header {
+    display: flex;
+    justify-content: center;
+    background-image: linear-gradient(to left, darkblue, lightblue);
+    padding: 10px;
+    color: #ffffff;
+}
+
+header h1 {
+    margin: 0px;
+    padding: 0px;
+    font-weight: bold;
+    font-size: 64px;
+    line-height: 1.2;
+}
+
+main {
+    display: flex;
+}
+
+section {
+    border-style: solid;
+    border-width: 3px;
+}
+
+main #left {
+    width: 20%;
+    height: 700px;
+}
+
+main #left aside p {
+    border-style: solid;
+    border-width: 3px;
+}
+
+main #left aside #line {
+    width: 100%;
+    margin: 10px 0px 10px 0px;
+    border-bottom: 3px solid lightgray;
+}
+
+main #left aside #types {
+    border-style: solid;
+    border-width: 3px;
+}
+
+main #left aside #home {
+    margin-top: 10px;
+}
+
+main #right {
+    display: flex;
+    width: 80%;
+    height: 700px;
+    background-color: gray;
+    padding: 15px;
+}
+
+main #right #pokemon {
+    width: 50%;
+    background-color: lightgray;
+}
+
+main #right #pokemon div{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+main #right #display {
+    display: flex;
+    justify-content: center;
+    height: 50%;
+}
+
+main #right #display div{
+    width: 20px;
+}
+
+main #right #display img{
+    width: 300px
+}
+
+main #right #details {
+    height: 50%;
+}
+
+main #right #info {
+    width: 50%;
+}
+
+main #right #info #facts {
+    width: 90%;
+    height: 20%;
+}
+
+main #right #info #stuff {
+    width: 90%;
+    height: 20%;
+}
+
+main #right #info #stuff2 {
+    width: 90%;
+    height: 20%;
+}
+
+main #right #info #link {
+    border-style: solid;
+    border-width: 3px;
+    width: 90%;
+    height: 20%;
+}
+
