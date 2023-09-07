@@ -26,9 +26,31 @@ let types = {
     18: "Fairy"
 }
 
-function getTypeIcons(type) {
-
+function getTypeIcon(type) {
+     // Base url to build request url from
+    let apiURL = "https://bulbapedia.bulbagarden.net/w/api.php?origin=*";
+    // Object that holds the keys and parameters to build the request url from
+    let params = {
+        action: "query",
+        format: "json",
+        titles: `${type}_(type)`
+    }
+    console.log(apiURL);
+    // Builds the request url from the keys and parameters provided
+    Object.keys(params).forEach(function (key) { apiURL += "&" + key + "=" + params[key]; });
+    console.log(apiURL);
+    //Sends requestto bulbapedia via mediawiki api
+    fetch(apiURL)
+    .then(function (response){
+        // Formats the response into a JSON object
+        // console.log(response.json());
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
 }
+let type = "normal"
+getTypeIcon(type);
 
 
 // Function that retrieves pokemon information and creates elements to hold the contents
@@ -96,4 +118,5 @@ function getPokeImage(pokeName, targetEl) {
         });
 }
 
-getPokeInfo(pokeSpecies); // Requests api information for the pokemon name passed in to the function
+// Requests api information for the pokemon name passed in to the function
+getPokeInfo(pokeSpecies);
