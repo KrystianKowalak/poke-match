@@ -85,6 +85,10 @@ function getPokeImage(pokeName, targetEl) {
     fetch(apiURL)
         .then(function (response) {
             // Formats the response into a JSON object
+            if (!(response.status == 200)) {
+
+                throw new Error("Not 2xx response", {cause: response});
+            }
             return response.json();
         })
         .then(function (data) {
