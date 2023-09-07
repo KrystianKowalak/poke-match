@@ -18,64 +18,64 @@
 </head>
 
 
-<body class="container-90">
+<body id="container90" class="container-90">
     <header>
         <div class="pokeTitle">
        <img src="./assets/img/PokeMatch.gif" alt="" id="pokeMatch">
     </header>
     <main class="row">
-        <div class="cardLeft col s12 m5 left center-align">
-            <div class="col s12 m6">
+       
+            <div id="battleCard" class="col s12 m3">
                 <div class="card blue-grey darken-1" id="card-left">
                     <div class=" white-text">
                         <h2>Game Battle!</h2>
-                        <p><h6>Fight! </h6>Pick the correct Pokémon to increase!</p>
+                        <p><h6>Fight! </h6>Pick the correct Pokemon to increase!</p>
                         <hr>
-                        <p><h6>Pick the wrong the Pokémon and lose a life!</h6>Immerse yourself in a unique Pokemon match game experience</p>
+                        <p><h6>Pick the wrong the Pokemon and lose a life!</h6>Immerse yourself in a unique Pokemon match game experience</p>
                     </div>
+                     <a id="btn-floating" class="btn-floating waves-effect waves-light btn-medium pulse red white-text">HOME
+                        <i
+                            class="material-icons white-text" 
+                            href="">play_circle_outline</i></a>
                 </div>
             </div>
-        </div>
-        <div class="cardRight col s12 m7 right center-align ">
-            <section class="row">
-                <div class="col s12 m12">
-                    <div class="card card-right">
-                        <h6>LEARN. </h6>
+       
+                <div id="player1" class="col s12 m4">
+                    <div class="card card-right" >
+                        <h6>PLAYER 1 </h6>
                         <div class="card-image">
                             <img src="./assets/img/0002Ivysaur.png">
-                            <a class="btn-floating 
-                            btn-medium halfway-fab waves-effect waves-light pulse red white-text "> Info <i
-                                    class="material-icons white-text" href="">info_outline</i></a>
+                        
                         </div>
-                        <div class="card-content grey lighten-2">
-                            <p>I am a very simple card. I am good at containing small bits of information. I am
-                                convenient because I require little markup to use effectively.</p>
+                        <div class="card-content grey lighten-2" id="midCard">
+                            <p>INFO.</p>
                         </div>
                     </div>
 
                 </div>
-            </section>
-            <section class="row">
-                <div class="col s12 m12">
+           
+                <div  id="player2" class="col s12 m4">
                     <div class="card card-right">
-                        <h6>MATCH. </h6>
+                        <h6>PLAYER 2 </h6>
                         <div class="card-image">
                             <img src="./assets/img/0002Ivysaur.png">
-                            <a class="btn-floating halfway-fab waves-effect waves-light btn-medium pulse red white-text">start
-                                <i
-                                    class="material-icons white-text" href="">play_circle_outline</i></a>
+                        
                         </div>
-                        <div class="card-content grey lighten-2 ">
-                            <p>I am a very simple card. I am good at containing small bits of information. I am
-                                convenient
-                                because I require little markup to use effectively.</p>
+                        <div class="card-content grey lighten-2" id="rightCard">
+                            <p>INFO</p>
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
+          
     </main>
 </body>
 
 
 </html>
+
+
+
+
+<!-- <a class="btn-floating halfway-fab waves-effect waves-light btn-medium pulse red white-text">start
+    <i
+        class="material-icons white-text" href="">play_circle_outline</i></a> -->
