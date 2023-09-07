@@ -70,8 +70,6 @@
 /*------------------------------game page------------------------------*/
 #player1 {
     margin-right: 30px;
-
-
 }
 
 #player2 {
@@ -79,7 +77,7 @@
 }
 
 #battleCard {
-    margin-right: 30px;
+    margin-right: 30px; 
 }
 
 
@@ -92,12 +90,36 @@
     padding-bottom: 100px;
 }
 
-#btn-floating {
+
+.startGame {
     display: flex;
-    width: 60%;
-    /* align-items: center; */
+    width: 20%;
+    justify-content: center;
+    border-radius: 0px;
 }
 
+#startButton {
+    display: flex;
+    justify-content: center;
+}
+
+.card.horizontal { 
+    margin-bottom: 2em;
+
+}
+
+.btn.red {
+    margin: .5em;
+}
+
+.checkbox[type="checkbox"]:checked + span:not(.checkbox)::after {
+    border: 2px solid #ff9800;
+    background-color: #ff9800;
+}
+
+.winnerTab {
+    font-size: 25px;
+}
 
 /*------------------------------Pokedex------------------------------*/
 
