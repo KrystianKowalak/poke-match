@@ -11,12 +11,12 @@
     <title>Pokédex</title>
 </head>
 
-<body>
+<body class="container=90">
     <header id = "pokedex-header">
         <h1 id = "pokedex-h1">Pokédex"</h1>
     </header>
-    <main id = "pokedex-main">
-        <section class = "pokedex-section pokedex-left">
+    <main class="row" id = "pokedex-main">
+        <section class = "card blue-grey darken-1 pokedex-section pokedex-left col12 m6 white-text">
             <aside id = "pokedex-aside">
                 <p id = "p-types">Types</p>
                 <div id = "line"></div>
@@ -55,7 +55,8 @@
                 <button id = "home-button">Home</button>
             </aside>
         </section>
-        <section class = "pokedex-section pokedex-right">
+        <section class = "pokedex-section pokedex-right col s12 m7 center-align">
+            <div class="row">
             <section class = "pokedex-section pokemon">
                 <div id = "buttons-div">
                     <button class = "navigation-button">back</button>
@@ -83,6 +84,7 @@
                 </div>
             </section>
         </section>
+        </div>
     </main>
 </body>
 </html>
