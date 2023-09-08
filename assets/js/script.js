@@ -56,6 +56,7 @@ function typeButtons(types, location) {
     for (i = 0; i < typesArray.length; i++) {
         let typeButton = document.createElement("button");
         typeButton.textContent = typesArray[i];
+        typeButton.id = typesArray[i] + "-button";
         typeButton.style.setProperty("background-color", hexArray[i]);
         typeButton.style.setProperty("color", "white");
         typeButton.style.setProperty("min-width","66px")
@@ -79,11 +80,12 @@ function getTypeIcon(type, targetEl) {
         indexpageids: 1,
         imlimit: "max",
         imdir: "ascending",
-        titles: "File:${type}_icon_HOME3.png"
+        titles: `File:${type}_icon_HOME3.png`
     }
     // Builds the request url from the keys and parameters provided
     Object.keys(params).forEach(function (key) { apiURL += "&" + key + "=" + params[key]; });
     //Sends requestto bulbapedia via mediawiki api
+    console.log(apiURL);
     fetch(apiURL)
         .then(function (response) {
             // Formats the response into a JSON object
@@ -210,6 +212,12 @@ function setPokedexInfo() {
         })
         .then(function (data) {
             getPokemonFlavor_text(data.id, document.getElementById("flavor-text"));
+            document.querySelector(".facts").append(document.getElementById(`${data.types[0].type.name}-button`))
+            if (data.types.length == 2) {
+                document.querySelector(".facts").append(document.getElementById(`${data.types[1].type.name}-button`))
+            }
+            document.getElementById("pokemon-link").href = `https://bulbapedia.bulbagarden.net/wiki/${data.name}_(Pok%C3%A9mon)`;
+        document.getElementById("pokemon-link").textContent = `Bulbapedia-${data.name}`;
         })
         .catch(function (error) {
             console.log(error);
