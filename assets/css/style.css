@@ -104,7 +104,8 @@
 }
 
 .card.horizontal { 
-    margin-bottom: 2em;
+    margin-bottom: 3em;
+    margin-top: 3em;
 
 }
 
@@ -119,6 +120,10 @@
 
 .winnerTab {
     font-size: 25px;
+}
+
+.game-h2 {
+    margin-bottom: 3em;
 }
 
 /*------------------------------Pokedex------------------------------*/
