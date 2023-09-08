@@ -277,3 +277,25 @@
     border-width: 3px;
     background-color: #DFDFDF;
 }
+
+
+/*------------------------------HighScorePage------------------------------*/
+
+.highScoreTitle {
+    display: flex;
+    justify-content: center;
+}
+
+
+#nameBar {
+    display: flex;
+    justify-content: center;
+}
+
+.input-field label {
+    color: red;
+}
+
+.nameScores {
+    margin: 0 0 20px 15px;
+}
