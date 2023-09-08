@@ -5,6 +5,49 @@
 // DEBUG: forces functions to use the pokemon name defined by pokeSpecies
 const pokeSpecies = "torchic";
 
+
+let data = [];
+
+data.push(object);
+data.push(object2);
+
+function fetchAllData() {
+    // Request url includes a pokemon name that is passed into the function (POKEAPI REQUIRES LOWERCASE POKEMON NAMES)
+    let apiURL = `https://pokeapi.co/api/v2/pokemon/`
+    let dataObject = {"id": 0, "name": "null", "type1": "null", "type2": "null"}
+
+    // Sends request to pokeapi
+    fetch(apiURL)
+        .then(function (response) {
+            // Throws error if server doesnt respond with a 200 code
+            if (!(response.status == 200)) {
+
+                throw new Error("Not 2xx response", {cause: response});
+            }
+            // Formats the response into a JSON object
+            return response.json();
+        })
+        .then(function (data) {
+            // Sets the contents of each target element according to JSON data
+            console.log(data);
+            for (let i = 0; i < data.count; i++) {
+                
+            }
+            if (data.types.length == 2) {
+                
+            }
+            // Sets contents to 'N/A' for the pokeType2 element if the pokemon only has one type
+            else {
+                
+            }
+        })
+        // Catches any error response from the server
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
+
 // Object holding all pokemon types and their background colors
 const types = {
     "normal": "#A8A77A",
@@ -85,7 +128,7 @@ function getTypeIcon(type, targetEl) {
     // Builds the request url from the keys and parameters provided
     Object.keys(params).forEach(function (key) { apiURL += "&" + key + "=" + params[key]; });
     //Sends requestto bulbapedia via mediawiki api
-    console.log(apiURL);
+    //console.log(apiURL);
     fetch(apiURL)
         .then(function (response) {
             // Formats the response into a JSON object
@@ -228,6 +271,7 @@ function setPokedexInfo() {
 
 // Runs on site load to load functions
 document.addEventListener('DOMContentLoaded', function() {
+    fetchAllData()
     setPokedexInfo();
     assignIcons(Object.keys(types));
 });
