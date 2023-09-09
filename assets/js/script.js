@@ -3,48 +3,83 @@
 // TODO: Function to determine if the user selected the correct choice in the battle gamemode
 
 // DEBUG: forces functions to use the pokemon name defined by pokeSpecies
-const pokeSpecies = "torchic";
+const pokeSpecies = "torchic";1997
+let pokeData = [];
 
-
-let data = [];
-
-data.push(object);
-data.push(object2);
+String.prototype.replaceAt = function(index, replacement) {
+    return this.substr(0, index) + replacement + this.substr(index + 1);
+}
 
 function fetchAllData() {
-    // Request url includes a pokemon name that is passed into the function (POKEAPI REQUIRES LOWERCASE POKEMON NAMES)
-    let apiURL = `https://pokeapi.co/api/v2/pokemon/`
-    let dataObject = {"id": 0, "name": "null", "type1": "null", "type2": "null"}
-
-    // Sends request to pokeapi
-    fetch(apiURL)
+    fetch("https://pokeapi.co/api/v2/pokemon-species/?offset=0&limit=1010")
         .then(function (response) {
-            // Throws error if server doesnt respond with a 200 code
             if (!(response.status == 200)) {
 
                 throw new Error("Not 2xx response", {cause: response});
             }
-            // Formats the response into a JSON object
             return response.json();
         })
         .then(function (data) {
-            // Sets the contents of each target element according to JSON data
-            console.log(data);
             for (let i = 0; i < data.count; i++) {
+                const dataObject = {"id": 0, "name": "null", "type1": "null", "type2" : "null", "flavor_text": "null", "habitat": "null", "stats": {}, "abilities": {}, "sprites": {}};
+                dataObject.id = i + 1;
+                dataObject.name = data.results[i].name;
+                pokeData.push(dataObject);
+
+                fetch("https://pokeapi.co/api/v2/pokemon/" + (i + 1))
+                    .then(function (response) {
+                        if (!(response.status == 200)) {
+    
+                            throw new Error("Not 2xx response", {cause: response});
+                        }
+                        return response.json();
+                    })
+                    .then(function (data) {
+                        pokeData[i].type1 = data.types[0].type.name.toUpperCase().slice(0, 1) + data.types[0].type.name.slice(1);
+                        if (data.types.length == 2) {
+                            pokeData[i].type2 = data.types[1].type.name.toUpperCase().slice(0, 1) + data.types[1].type.name.slice(1);
+                        }
+                        else {
+                            pokeData[i].type2 = "N/A"
+                        }
+                        pokeData[i].stats = data.stats;
+                        pokeData[i].abilities = data.abilities;
+                        pokeData[i].sprites = data.sprites;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
                 
-            }
-            if (data.types.length == 2) {
-                
-            }
-            // Sets contents to 'N/A' for the pokeType2 element if the pokemon only has one type
-            else {
-                
-            }
+                fetch("https://pokeapi.co/api/v2/pokemon-species/" + (i + 1))
+                    .then(function (response) {
+                        if (!(response.status == 200)) {
+    
+                            throw new Error("Not 2xx response", {cause: response});
+                        }
+                        return response.json();
+                    })
+                    .then(function (data) {
+                        console.log(data);
+                        pokeData[i].habitat = data.habitat.name;
+                        for (let index = 0; index < data.flavor_text_entries.length; index++) {
+                            if(data.flavor_text_entries[index].language.name == "en") {
+                                pokeData[i].flavor_text = data.flavor_text_entries[index].flavor_text
+                                pokeData[i].flavor_text = pokeData[i].flavor_text.replaceAt(pokeData[i].flavor_text.search("é"), "e")
+                                break;
+                            }
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+           }
+
         })
-        // Catches any error response from the server
         .catch(function (error) {
             console.log(error);
         });
+
+    console.log(pokeData);
 }
 
 
@@ -114,7 +149,7 @@ function typeButtons(types, location) {
 
 function getTypeIcon(type, targetEl) {
     // Base url to build request url from
-    let apiURL = "https://bulbapedia.bulbagarden.net/w/api.php?origin=*";
+    let apiURL = "http://bulbapedia.bulbagarden.net/w/api.php?origin=*";
     // Object that holds the keys and parameters to build the request url from
     let params = {
         action: "query",
@@ -143,40 +178,6 @@ function getTypeIcon(type, targetEl) {
         });
 }
 
-// Function that retrieves pokemon information and creates elements to hold the contents
-function getPokeInfo(pokeName, nameEl, type1El, type2El, idEl) {
-    // Request url includes a pokemon name that is passed into the function (POKEAPI REQUIRES LOWERCASE POKEMON NAMES)
-    let apiURL = `https://pokeapi.co/api/v2/pokemon/${pokeName.toLowerCase()}`
-
-    // Sends request to pokeapi
-    fetch(apiURL)
-        .then(function (response) {
-            // Throws error if server doesnt respond with a 200 code
-            if (!(response.status == 200)) {
-
-                throw new Error("Not 2xx response", {cause: response});
-            }
-            // Formats the response into a JSON object
-            return response.json();
-        })
-        .then(function (data) {
-            // Sets the contents of each target element according to JSON data
-            nameEl.textContent = "Name: " + data.name.toUpperCase().slice(0, 1) + data.name.slice(1);
-            type1El.textContent = "Type 1: " + data.types[0].type.name.toUpperCase().slice(0, 1) + data.types[0].type.name.slice(1);
-            if (data.types.length == 2) {
-                type2El.textContent = "Type 2: " + data.types[1].type.name.toUpperCase().slice(0, 1) + data.types[1].type.name.slice(1);
-            }
-            // Sets contents to 'N/A' for the pokeType2 element if the pokemon only has one type
-            else {
-                type2El.textContent = "Type 2: N/A" 
-            }
-            idEl.textContent = "ID Number: " + data.id;
-        })
-        // Catches any error response from the server
-        .catch(function (error) {
-            console.log(error);
-        });
-}
 
 // This function retrieves a pokemon image from bulbapedia and assigns it as the source of the image element provided to the function
 function getPokeImage(pokeName, targetEl) {
@@ -216,27 +217,6 @@ function getPokeImage(pokeName, targetEl) {
         });
 }
 
-// This function retrieves a pokemon's description by the pokemons id number from pokeAPI and assigns it as text to the target element provided to the function
-function getPokemonFlavor_text(id, targetEl) {
-    // Sends request to pokeapi
-    fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
-        .then(function (response) {
-            // Throws error if server doesnt respond with a 200 code
-            if (!(response.status == 200)) {
-                throw new Error("Not 2xx response", {cause: response});
-            }
-            // Formats the response into a JSON object
-            return response.json();
-        })
-        .then(function (data) {
-            // Assigns the target element with the provided text from pokeAPI
-            targetEl.textContent = data.flavor_text_entries[0].flavor_text;
-        })
-        // Catches any error response from the server
-        .catch(function (error) {
-            console.log(error);
-        });
-}
 
 
 // work in progress
@@ -272,6 +252,6 @@ function setPokedexInfo() {
 // Runs on site load to load functions
 document.addEventListener('DOMContentLoaded', function() {
     fetchAllData()
-    setPokedexInfo();
-    assignIcons(Object.keys(types));
+    //setPokedexInfo();
+    //assignIcons(Object.keys(types));
 });
