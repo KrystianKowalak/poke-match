@@ -59,7 +59,6 @@ function fetchAllData() {
                         return response.json();
                     })
                     .then(function (data) {
-                        console.log(data);
                         pokeData[i].habitat = data.habitat.name;
                         for (let index = 0; index < data.flavor_text_entries.length; index++) {
                             if(data.flavor_text_entries[index].language.name == "en") {
@@ -73,13 +72,49 @@ function fetchAllData() {
                         console.log(error);
                     });
            }
-
         })
         .catch(function (error) {
             console.log(error);
         });
-
     console.log(pokeData);
+}
+
+// This function retrieves a pokemon image from bulbapedia and assigns it as the source of the image element provided to the function
+function getPokeImage(pokeName, array) {
+    // Base url to build request url from
+    let apiURL = "https://bulbapedia.bulbagarden.net/w/api.php?origin=*";
+    // Object that holds the keys and parameters to build the request url from
+    let params = {
+        action: "query",
+        format: "json",
+        prop: "pageimages",
+        indexpageids: 1,
+        piprop: "original",
+        titles: `${pokeName}_(Pokémon)`
+    }
+    // Builds the request url from the keys and parameters provided
+    Object.keys(params).forEach(function (key) { apiURL += "&" + key + "=" + params[key]; });
+
+    // Sends request to bulbapedia via mediawiki api
+    fetch(apiURL)
+        .then(function (response) {
+            // Throws error if server doesnt respond with a 200 code
+            if (!(response.status == 200)) {
+
+                throw new Error("Not 2xx response", {cause: response});
+            }
+            // Formats the response into a JSON object
+            return response.json();
+        })
+        .then(function (data) {
+            let pid = data.query.pageids[0];
+            // Assigns the target element with the provided image from mediawiki api
+            targetEl.src = data.query.pages[pid].original.source;
+        })
+        // Catches any error response from the server
+        .catch(function (error) {
+            console.log(error);
+        });
 }
 
 
@@ -177,47 +212,6 @@ function getTypeIcon(type, targetEl) {
             console.log(error);
         });
 }
-
-
-// This function retrieves a pokemon image from bulbapedia and assigns it as the source of the image element provided to the function
-function getPokeImage(pokeName, targetEl) {
-    // Base url to build request url from
-    let apiURL = "https://bulbapedia.bulbagarden.net/w/api.php?origin=*";
-    // Object that holds the keys and parameters to build the request url from
-    let params = {
-        action: "query",
-        format: "json",
-        prop: "pageimages",
-        indexpageids: 1,
-        piprop: "original",
-        titles: `${pokeName}_(Pokémon)`
-    }
-    // Builds the request url from the keys and parameters provided
-    Object.keys(params).forEach(function (key) { apiURL += "&" + key + "=" + params[key]; });
-
-    // Sends request to bulbapedia via mediawiki api
-    fetch(apiURL)
-        .then(function (response) {
-            // Throws error if server doesnt respond with a 200 code
-            if (!(response.status == 200)) {
-
-                throw new Error("Not 2xx response", {cause: response});
-            }
-            // Formats the response into a JSON object
-            return response.json();
-        })
-        .then(function (data) {
-            let pid = data.query.pageids[0];
-            // Assigns the target element with the provided image from mediawiki api
-            targetEl.src = data.query.pages[pid].original.source;
-        })
-        // Catches any error response from the server
-        .catch(function (error) {
-            console.log(error);
-        });
-}
-
-
 
 // work in progress
 function setPokedexInfo() {
