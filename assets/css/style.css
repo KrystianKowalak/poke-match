@@ -282,7 +282,7 @@
 /*------------------------------HighScorePage------------------------------*/
 
 .highScoreTitle {
-    display: flex;
+     display: flex; 
     justify-content: center;
 }
 
@@ -296,6 +296,40 @@
     color: red;
 }
 
-.nameScores {
-    margin: 0 0 20px 15px;
+ .nameScores {
+    margin: 10px;
+    padding: 15px;
+    
+}  
+
+ #scoreTable {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+} 
+
+.scoreEntry{
+    margin-top: 3em;
+    padding: 3em;
 }
+
+#entryDisplay{
+    padding: 3em;
+    margin-bottom: 3em;
+}
+
+
+#scoreTitle {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+}
+
+
+#score-box {
+    margin-left: 25em;
+}
+
+

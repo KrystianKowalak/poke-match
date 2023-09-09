@@ -11,6 +11,8 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.0.2-alpha/dist/css/materialize.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <a rel="gamehtml" href="./game.html"></a>
+    <a rel="mainpage-html" href="./index.html"></a>
     <script defer
         src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.0.2-alpha/dist/js/materialize.min.js"></script>
     <script defer src="./assets/js/script.js"></script>
@@ -23,44 +25,51 @@
             <img src="./assets/img/Scores-9-8-2023.gif" alt="" id="matchGif">
         </div>
     </header>
-    <main class="container-90 row" id="scoreTitle">
-        <div class="card col s12 m8 offset-m2 center-align red" id="scoreCard">
-            <div class="white-text">
-                <h2 id="index-h2">High Scores:</h2>
-                <div class="row">
-                    <div class="input-field col s8 offset-s2">
-                        <input value=" " id="first_name2" type="text" class="validate">
-                        <label class="active" id="nameBar" for="first_name2">Name</label>
+    <main class="container-90 row" id="score-box">
+
+        <div class="card col s12 m6 center-align grey lighten-2 ">
+            <div class="red-text">
+                <div class="row" id="scoreTable">
+                <div class="card col s12 m7 offset-s3 scoreEntry">
+                    <h2 id="index-h2">High Scores:</h2>
+                    <div class="row">
+                        <div class="input-field col s12 ">
+                            <input value=" " id="first_name2" type="text" class="validate">
+                            <label class="active" id="nameBar" for="first_name2">Name</label>
+                        </div>
                     </div>
                 </div>
                 <hr>
-                <table class="nameScores">
-                    <thead>
-                        <tr>:
-                            <th>Name</th>
-                            <th>Score:</th>
+                <div class="card col s12 m7 scoreEntry">
+                    <table class="nameScores" >
+                        <thead>
+                            <tr>
+                                <th>Name:</th>
+                                <th>Score:</th>
 
-                        </tr>
-                    </thead>
+                            </tr>
+                        </thead>
 
-                    <tbody>
-                        <tr>
-                            <td>Alvin</td>
-                            <td>Eclair</td>
+                        <tbody>
+                            <tr>
+                                <td>Alvin</td>
+                                <td>Eclair</td>
 
-                        </tr>
-                        <tr>
-                            <td>Alan</td>
-                            <td>Jellybean</td>
+                            </tr>
+                            <tr>
+                                <td>Alan</td>
+                                <td>Jellybean</td>
 
-                        </tr>
-                        <tr>
-                            <td>Jonathan</td>
-                            <td>Lollipop</td>
+                            </tr>
+                            <tr>
+                                <td>Jonathan</td>
+                                <td>Lollipop</td>
 
-                        </tr>
-                    </tbody>
-                </table>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
             </div>
         </div>
 
