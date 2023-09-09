@@ -3,7 +3,7 @@
 // TODO: Function to determine if the user selected the correct choice in the battle gamemode
 
 // DEBUG: forces functions to use the pokemon name defined by pokeSpecies
-const pokeSpecies = "torchic";1997
+const pokeSpecies = "torchic";
 let pokeData = [];
 
 String.prototype.replaceAt = function(index, replacement) {
@@ -80,7 +80,7 @@ function fetchAllData() {
 }
 
 // This function retrieves a pokemon image from bulbapedia and assigns it as the source of the image element provided to the function
-function getPokeImage(pokeName, array) {
+function getPokeImage(pokeName, targetEl) {
     // Base url to build request url from
     let apiURL = "https://bulbapedia.bulbagarden.net/w/api.php?origin=*";
     // Object that holds the keys and parameters to build the request url from
@@ -117,69 +117,18 @@ function getPokeImage(pokeName, array) {
         });
 }
 
-
-// Object holding all pokemon types and their background colors
-const types = {
-    "normal": "#A8A77A",
-    "fighting": "#C22E28",
-    "flying": "#A98FF3",
-    "poison": "#A33EA1",
-    "ground": "#E2BF65",
-    "rock": "#B6A136",
-    "bug": "#A6B91A",
-    "ghost": "#735797",
-    "steel": "#B7B7CE",
-    "fire": "#EE8130",
-    "water": "#6390F0",
-    "grass": "#7AC74C",
-    "electric": "#F7D02C",
-    "psychic": "#F95587",
-    "ice": "#96D9D6",
-    "dragon": "#6F35FC",
-    "dark": "#705746",
-    "fairy": "#D685AD"
-};
-
 function assignIcons(types) {
     let iconContainer = document.createElement("div");
-    // iconContainer.style.setProperty("display", "flex");
-    // iconContainer.style.setProperty("max-width", "250px");
-    // iconContainer.style.setProperty("flex-wrap", "wrap");
     for (i = 0; i < types.length; i++) {
         let typeIcon = document.createElement("img");
         getTypeIcon(types[i], typeIcon);
+        typeIcon.id = types[i];
+        typeIcon.onclick = function() {
+            console.log(this.id);
+        };
         iconContainer.append(typeIcon);
     }
     document.getElementById("pokedex-aside").append(iconContainer);
-}
-
-function typeButtons(types, location) {
-    let buttonContainer = document.createElement("div");
-    let typesArray = Object.keys(types);
-    let hexArray = Object.values(types);
-    // buttonContainer.style.setProperty("display", "flex");
-    // buttonContainer.style.setProperty("width", "250px");
-    // buttonContainer.style.setProperty("flex-wrap", "wrap");
-    // buttonContainer.style.setProperty("justify-content", "center");
-    // buttonContainer.style.setProperty("border-style", "solid");
-    // buttonContainer.style.setProperty("border-width", "3px");
-    // buttonContainer.style.setProperty("padding", "10px");
-    // buttonContainer.style.setProperty("gap", "10px");
-
-    for (i = 0; i < typesArray.length; i++) {
-        let typeButton = document.createElement("button");
-        typeButton.textContent = typesArray[i];
-        typeButton.id = typesArray[i] + "-button";
-        // typeButton.style.setProperty("background-color", hexArray[i]);
-        // typeButton.style.setProperty("color", "white");
-        // typeButton.style.setProperty("min-width","66px")
-        // typeButton.style.setProperty("border-radius","5px")
-        typeButton.onclick = function() {
-            console.log(typeButton.textContent);
-        };
-        // buttonContainer.append(typeButton);
-    }
-    location.append(buttonContainer);
 }
 
 function getTypeIcon(type, targetEl) {
@@ -210,6 +159,57 @@ function getTypeIcon(type, targetEl) {
         .catch(function (error) {
             console.log(error);
         });
+}
+
+// Object holding all pokemon types and their background colors
+const types = {
+    "normal": "#A8A77A",
+    "fighting": "#C22E28",
+    "flying": "#A98FF3",
+    "poison": "#A33EA1",
+    "ground": "#E2BF65",
+    "rock": "#B6A136",
+    "bug": "#A6B91A",
+    "ghost": "#735797",
+    "steel": "#B7B7CE",
+    "fire": "#EE8130",
+    "water": "#6390F0",
+    "grass": "#7AC74C",
+    "electric": "#F7D02C",
+    "psychic": "#F95587",
+    "ice": "#96D9D6",
+    "dragon": "#6F35FC",
+    "dark": "#705746",
+    "fairy": "#D685AD"
+};
+
+function typeButtons(types, location) {
+    let buttonContainer = document.createElement("div");
+    let typesArray = Object.keys(types);
+    let hexArray = Object.values(types);
+    // buttonContainer.style.setProperty("display", "flex");
+    // buttonContainer.style.setProperty("width", "250px");
+    // buttonContainer.style.setProperty("flex-wrap", "wrap");
+    // buttonContainer.style.setProperty("justify-content", "center");
+    // buttonContainer.style.setProperty("border-style", "solid");
+    // buttonContainer.style.setProperty("border-width", "3px");
+    // buttonContainer.style.setProperty("padding", "10px");
+    // buttonContainer.style.setProperty("gap", "10px");
+
+    for (i = 0; i < typesArray.length; i++) {
+        let typeButton = document.createElement("button");
+        typeButton.textContent = typesArray[i];
+        typeButton.id = typesArray[i] + "-button";
+        // typeButton.style.setProperty("background-color", hexArray[i]);
+        // typeButton.style.setProperty("color", "white");
+        // typeButton.style.setProperty("min-width","66px")
+        // typeButton.style.setProperty("border-radius","5px")
+        typeButton.onclick = function() {
+            console.log(typeButton.textContent);
+        };
+        // buttonContainer.append(typeButton);
+    }
+    location.append(buttonContainer);
 }
 
 // work in progress
@@ -246,5 +246,5 @@ function setPokedexInfo() {
 document.addEventListener('DOMContentLoaded', function() {
     fetchAllData()
     //setPokedexInfo();
-    //assignIcons(Object.keys(types));
+    assignIcons(Object.keys(types));
 });
