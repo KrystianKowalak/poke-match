@@ -107,9 +107,9 @@ const types = {
 
 function assignIcons(types) {
     let iconContainer = document.createElement("div");
-    iconContainer.style.setProperty("display", "flex");
-    iconContainer.style.setProperty("max-width", "250px");
-    iconContainer.style.setProperty("flex-wrap", "wrap");
+    // iconContainer.style.setProperty("display", "flex");
+    // iconContainer.style.setProperty("max-width", "250px");
+    // iconContainer.style.setProperty("flex-wrap", "wrap");
     for (i = 0; i < types.length; i++) {
         let typeIcon = document.createElement("img");
         getTypeIcon(types[i], typeIcon);
@@ -122,27 +122,27 @@ function typeButtons(types, location) {
     let buttonContainer = document.createElement("div");
     let typesArray = Object.keys(types);
     let hexArray = Object.values(types);
-    buttonContainer.style.setProperty("display", "flex");
-    buttonContainer.style.setProperty("width", "325px");
-    buttonContainer.style.setProperty("flex-wrap", "wrap");
-    buttonContainer.style.setProperty("justify-content", "center");
-    buttonContainer.style.setProperty("border-style", "solid");
-    buttonContainer.style.setProperty("border-width", "3px");
-    buttonContainer.style.setProperty("padding", "10px");
-    buttonContainer.style.setProperty("gap", "10px");
+    // buttonContainer.style.setProperty("display", "flex");
+    // buttonContainer.style.setProperty("width", "250px");
+    // buttonContainer.style.setProperty("flex-wrap", "wrap");
+    // buttonContainer.style.setProperty("justify-content", "center");
+    // buttonContainer.style.setProperty("border-style", "solid");
+    // buttonContainer.style.setProperty("border-width", "3px");
+    // buttonContainer.style.setProperty("padding", "10px");
+    // buttonContainer.style.setProperty("gap", "10px");
 
     for (i = 0; i < typesArray.length; i++) {
         let typeButton = document.createElement("button");
         typeButton.textContent = typesArray[i];
         typeButton.id = typesArray[i] + "-button";
-        typeButton.style.setProperty("background-color", hexArray[i]);
-        typeButton.style.setProperty("color", "white");
-        typeButton.style.setProperty("min-width","66px")
-        typeButton.style.setProperty("border-radius","5px")
+        // typeButton.style.setProperty("background-color", hexArray[i]);
+        // typeButton.style.setProperty("color", "white");
+        // typeButton.style.setProperty("min-width","66px")
+        // typeButton.style.setProperty("border-radius","5px")
         typeButton.onclick = function() {
             console.log(typeButton.textContent);
         };
-        buttonContainer.append(typeButton);
+        // buttonContainer.append(typeButton);
     }
     location.append(buttonContainer);
 }
