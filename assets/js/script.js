@@ -2,16 +2,18 @@
 // TODO: Build object to hold type matchup data for the battle gamemode
 // TODO: Function to determine if the user selected the correct choice in the battle gamemode
 
-// DEBUG: forces functions to use the pokemon name defined by pokeSpecies
-const pokeSpecies = "torchic";
+//{"id": 0, "name": "null", "type1": "null", "type2" : "null", "flavor_text": "null" "habitat": "null", "stats": {}, "abilities": {}, "sprites": {}}
 let pokeData = [];
+let pokemonByTypes = [];
 
 String.prototype.replaceAt = function(index, replacement) {
     return this.substr(0, index) + replacement + this.substr(index + 1);
 }
 
+//------------------------------API CALLS------------------------------
+//----------POKEAPI----------
 function fetchAllData() {
-    fetch("https://pokeapi.co/api/v2/pokemon-species/?offset=0&limit=1010")
+    fetch("https://pokeapi.co/api/v2/pokemon-species/?offset=0&limit=110")
         .then(function (response) {
             if (!(response.status == 200)) {
 
@@ -78,7 +80,7 @@ function fetchAllData() {
         });
     console.log(pokeData);
 }
-
+//----------MEDIAWIKIAPI----------
 // This function retrieves a pokemon image from bulbapedia and assigns it as the source of the image element provided to the function
 function getPokeImage(pokeName, targetEl) {
     // Base url to build request url from
@@ -116,15 +118,23 @@ function getPokeImage(pokeName, targetEl) {
             console.log(error);
         });
 }
-
+//------------------------------ICON BUTTONS------------------------------
 function assignIcons(types) {
     let iconContainer = document.createElement("div");
     for (i = 0; i < types.length; i++) {
         let typeIcon = document.createElement("img");
         getTypeIcon(types[i], typeIcon);
+        typeIcon.title = types[i];
         typeIcon.id = types[i];
         typeIcon.onclick = function() {
-            console.log(this.id);
+            for (let i = 0; i < pokeData.length; i++) {
+                if((pokeData[i].type1.toLowerCase() == this.id) || (pokeData[i].type2.toLowerCase() == this.id)) {
+                    pokemonByTypes.push(pokeData[i]);
+                }
+            }
+            for (let i = 0; i < pokemonByTypes.length; i++) {
+                console.log(pokemonByTypes[i]);
+            }
         };
         iconContainer.append(typeIcon);
     }
