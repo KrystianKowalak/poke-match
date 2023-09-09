@@ -85,7 +85,6 @@ function getTypeIcon(type, targetEl) {
     // Builds the request url from the keys and parameters provided
     Object.keys(params).forEach(function (key) { apiURL += "&" + key + "=" + params[key]; });
     //Sends requestto bulbapedia via mediawiki api
-    console.log(apiURL);
     fetch(apiURL)
         .then(function (response) {
             // Formats the response into a JSON object
