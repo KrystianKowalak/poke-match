@@ -328,7 +328,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     await fetchInfoData();
     await fetchInfoData2();
     pokemonByTypes = pokeData;
-    setPokedexInfo(pokeData, 0);
-    assignIcons(Object.keys(types));
+    // setPokedexInfo(pokeData, 0);
+    // assignIcons(Object.keys(types));
 });
 

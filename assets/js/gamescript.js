@@ -41,17 +41,17 @@ function init() {
 
 
 //returns a random pokemon object from pokeData
-function randomPoke () {
+function randomPoke() {
     const max = pokeData.length;
     // console.log(`There are ${maxPoke} pokemon stored in the array`);
     let index = Math.floor(Math.random() * max); //a random index value within the pokeData object
-    console.log(`The index ${index}`);
+    console.log(`The index number is ${index}`);
     console.log(`It's ${pokeData[index].name}!`);
     return pokeData[index];
 };
 
 //updates card information with data from a pokemon object
-function updateCards (){
+function updateCards() {
     let poke1 = randomPoke(); //holds pokemon object for the left card
     let poke2 = randomPoke(); //holds pokemon object for the right card
     const pokeimg1 = document.querySelector("#poke1");
@@ -61,8 +61,25 @@ function updateCards (){
     const card1Type1 = document.getElementById("card-1-type-1")
     const card1Type2 = document.getElementById("card-1-type-2")
     const card2Type1 = document.getElementById("card-2-type-1")
-    const card2Type2 = document.getElementById("card-1-type-2")
-    
+    const card2Type2 = document.getElementById("card-2-type-2")
+    const typeContainers = document.querySelectorAll(".type-container");
+
+    function resetButtons(target) {
+        target.forEach((element) => {
+            if (element.children.length == 0) {
+                console.log(`no button in type container ${element.id}}`)
+            }
+            else {
+                console.log(`Removing children of ${element.id}`)
+                element.children.item(0).remove();
+            }
+        })
+    }
+
+
+
+    //removes type buttons that are already present on the card
+    resetButtons(typeContainers);
     //left card
     pokeimg1.src = getPokeImage(poke1.name, pokeimg1);
     pokeName1.textContent = poke1.name;
@@ -82,8 +99,7 @@ function startGame() {
     // timer();
     // init();
     // roundStart();
-    // randomPoke();
-    updateCards ();
+    updateCards();
 };
 
 
