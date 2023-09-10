@@ -21,15 +21,12 @@ function timer() {
 
 // fetches a new match up of pokemon to show to the user
 function roundStart() {
-    // TODO: call rng twice funtion to generate a pokemon id to use for poulating cards with information
-    const id1= null; //rng function call
-    const id2= null; //rng function call
 
-    const pokeimg1 = document.querySelector("#poke1");
-    const pokeimg2 = document.querySelector("#poke2");
-    pokeimg1.src = getPokeImage("pikachu", pokeimg1);
-    pokeimg2.src = getPokeImage("rattata", pokeimg2);
 };
+
+
+
+
 
 //initializes the values for lives and score
 function init() {
@@ -39,19 +36,54 @@ function init() {
     score.textContent += "0";
 };
 
-function randomPoke (max) {
-    let idNumber = Math.floor(Math.random() * max) + 1;
-    return idNumber;
-}
+
+
+
+
+//returns a random pokemon object from pokeData
+function randomPoke () {
+    const max = pokeData.length;
+    // console.log(`There are ${maxPoke} pokemon stored in the array`);
+    let index = Math.floor(Math.random() * max); //a random index value within the pokeData object
+    console.log(`The index ${index}`);
+    console.log(`It's ${pokeData[index].name}!`);
+    return pokeData[index];
+};
+
+//updates card information with data from a pokemon object
+function updateCards (){
+    let poke1 = randomPoke(); //holds pokemon object for the left card
+    let poke2 = randomPoke(); //holds pokemon object for the right card
+    const pokeimg1 = document.querySelector("#poke1");
+    const pokeimg2 = document.querySelector("#poke2");
+    const pokeName1 = document.querySelector("#card-1-name")
+    const pokeName2 = document.querySelector("#card-2-name")
+    const card1Type1 = document.getElementById("card-1-type-1")
+    const card1Type2 = document.getElementById("card-1-type-2")
+    const card2Type1 = document.getElementById("card-2-type-1")
+    const card2Type2 = document.getElementById("card-1-type-2")
+    
+    //left card
+    pokeimg1.src = getPokeImage(poke1.name, pokeimg1);
+    pokeName1.textContent = poke1.name;
+    typeButtons(poke1.type1, card1Type1);
+    typeButtons(poke1.type2, card1Type2);
+    //right card
+    pokeimg2.src = getPokeImage(poke2.name, pokeimg2);
+    pokeName2.textContent = poke2.name;
+    typeButtons(poke2.type1, card2Type1);
+    typeButtons(poke2.type2, card2Type2);
+};
 
 
 // starts the timer, updates game window, initializes score and lives
 function startGame() {
+    console.log("You clicked the start button!");
     // timer();
     // init();
     // roundStart();
-    randomPoke(10);
-    console.log("You clicked the start button!");
+    // randomPoke();
+    updateCards ();
 };
 
 
