@@ -40,10 +40,10 @@
         </section>
 
         <div class="card card-right col s12 m9">
-            <a class="waves-effect waves-light btn red">
+            <a class="waves-effect waves-light btn red" onclick="pokedexBack()">
                 <i class="material-icons left">arrow_back</i>back
             </a>
-            <a class="waves-effect waves-light btn red">
+            <a class="waves-effect waves-light btn red" onclick="pokedexNext()">
                 <i class="material-icons right">arrow_forward</i>next
             </a>
             <section class="row">
@@ -59,11 +59,23 @@
                     <p id = "Pokemon-type1"></p>
                     <p id = "Pokemon-type2"></p>
                 </section>
-                <section class = "pokedex-section stuff">
-                    
-                </section>
-                <section class = "pokedex-section stuff2">
-                    
+                <section class="col s12 m6">
+                    <section class="card pokedex-section grey lighten-2" id = "pokemon-info">
+                        <p id="Pokemon-id"></p>
+                        <p id="Pokemon-name"></p>
+                        <p id="Pokemon-type1"></p>
+                        <p id="Pokemon-type2"></p>
+                        <p id="Pokemon-habitat"></p>
+                        <p id="Pokemon-abilities"></p>
+                    </section>
+                    <section class="card pokedex-section grey lighten-2" id = "pokemon-sprites">
+                    </section>
+                    <section class="card pokedex-section grey lighten-2">
+                        TYPE MATCHUP INFO WILL BE HERE
+                    </section>
+                    <a class="waves-effect waves-light btn red" id="pokemon-link">
+                        <i class="material-icons right">info_outline</i>More Info
+                    </a>
                 </section>
             </section>
         </div>
