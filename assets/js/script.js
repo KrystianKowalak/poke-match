@@ -3,6 +3,9 @@
 //{"id": 0, "name": "null", "type1": "null", "type2" : "null", "flavor_text": "null" "habitat": "null", "stats": {}, "abilities": {}, "sprites": {}}
 let pokeData = [];
 let pokemonByTypes = [];
+//Example of pokeData
+//{"name": "null", "damage_relations": {}}
+let typeMatchUps = []
 
 // Object holding all pokemon types and their background colors
 const types = {
@@ -63,9 +66,9 @@ function fetchNameIdData() {
             return response.json();
         })
         .then(function (data) {
-            //Creates an object with the required keys and values for every pokemon in recieved data and assigns them a namd and id before pushing them into the pokeData array
+            //Creates an object with the required keys and values for every pokemon in recieved data and assigns them a name and id before pushing them into the pokeData array
             for (let i = 0; i < 110; i++) {
-                let dataObject = {"id": 0, "name": "null", "type1": "null", "type2" : "null", "flavor_text": "null", "habitat": "null", "stats": {}, "abilities": {}, "sprites": {}, "damage_relations": {}};
+                let dataObject = {"id": 0, "name": "null", "type1": "null", "type2" : "null", "flavor_text": "null", "habitat": "null", "stats": {}, "abilities": {}, "sprites": {}};
                 dataObject.id = i + 1;
                 dataObject.name = data.results[i].name;
                 pokeData.push(dataObject);
@@ -147,10 +150,9 @@ async function fetchMoreInfoData() {
     }
 }
 
-//Fetch call to pokieapi that retrieves more info for pokeData array
+//Fetch call to pokieapi that initzilizes the typeMatchUps array with objects and assigns them type damage relations
 async function fetchTypeMatchUpsData() {
-    //For every object in the pokeData array the code runs a fetch call
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 18; i++) {
         //Sends request to pokeapi
         await fetch("https://pokeapi.co/api/v2/type/" + (i + 1))
             .then(function (response) {
@@ -162,8 +164,11 @@ async function fetchTypeMatchUpsData() {
                 return response.json();
             })
             .then(function (data) {
-                //Sets the pokeData damage_relations object from the api data
-                pokeData[i].damage_relations = data.damage_relations;
+                //Creates an object with the required keys and values for every type in recieved data and assigns value before pushing them into the typeMatchUp array
+                let dataObject = {"name": "null", "damage_relations": {}};
+                dataObject.name = data.name;
+                dataObject.damage_relations = data.damage_relations;
+                typeMatchUps.push(dataObject);
             })
             //Catches any error throw from bad server response
             .catch(function (error) {
@@ -434,7 +439,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     await fetchInfoData();
     await fetchMoreInfoData();
     await fetchTypeMatchUpsData();
-    console.log(pokeData);
+    console.log(typeMatchUps);
     //Only runs this code on pokedex.html load
     if(this.location.href.split("/poke-match/")[1] == "pokedex.html") {
         pokemonByTypes = pokeData;
