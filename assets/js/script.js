@@ -152,6 +152,8 @@ function assignIcons(types) {
         typeIcon.title = types[i];
         typeIcon.id = types[i];
         typeIcon.onclick = function() {
+            
+            pokemonByTypes = [];
             for (let i = 0; i < pokeData.length; i++) {
                 if((pokeData[i].type1.toLowerCase() == this.id) || (pokeData[i].type2.toLowerCase() == this.id)) {
                     pokemonByTypes.push(pokeData[i]);
@@ -198,15 +200,13 @@ function typeButtons(type, location) {
     if(type == "N/A") {
         return;
     }
-    type = type.toLowerCase();
-    console.log(type);
-    console.log(types.type);
     let typeButton = document.createElement("button");
     typeButton.textContent = type;
     typeButton.id = type + "-button";
     typeButton.style.setProperty("min-width","66px")
+    typeButton.style.setProperty("margin-left","15px")
     typeButton.style.setProperty("border-radius","5px")
-    typeButton.style.setProperty("background-color", types.type);
+    typeButton.style.setProperty("background-color", types[type.toLowerCase()]);
     typeButton.style.setProperty("color", "white");
     typeButton.onclick = function() {
         console.log(typeButton.textContent);
@@ -215,75 +215,76 @@ function typeButtons(type, location) {
 }
 
 // work in progress
-function setPokedexInfo() {
-    getPokeImage(pokeData[0].name, document.getElementById("pokedex-image"));
-    assignIcons(Object.keys(types));
-    document.getElementById("flavor-text").textContent = pokeData[0].flavor_text;
-    document.getElementById("Pokemon-id").textContent += pokeData[0].id;
-    document.getElementById("Pokemon-name").textContent += pokeData[0].name;
-    document.getElementById("Pokemon-type1").textContent += pokeData[0].type1;
-    typeButtons(pokeData[0].type1, document.getElementById("Pokemon-type1"));
-    document.getElementById("Pokemon-type2").textContent += pokeData[0].type2;
-    typeButtons(pokeData[0].type2, document.getElementById("Pokemon-type2"));
-    document.getElementById("Pokemon-habitat").textContent += pokeData[0].habitat;
-    for (let i = 0; i < pokeData[0].abilities.length; i++) {
-        document.getElementById("Pokemon-abilities").textContent += pokeData[0].abilities[i].ability.name
+function setPokedexInfo(dataArray, index) {
+    getPokeImage(dataArray[index].name, document.getElementById("pokedex-image"));
+    document.getElementById("flavor-text").textContent = dataArray[index].flavor_text;
+    document.getElementById("Pokemon-id").textContent = "ID: " + dataArray[index].id;
+    document.getElementById("Pokemon-name").textContent = "Name: " + dataArray[index].name;
+    document.getElementById("Pokemon-type1").textContent = "Type: " + dataArray[index].type1;
+    typeButtons(dataArray[index].type1, document.getElementById("Pokemon-type1"));
+    document.getElementById("Pokemon-type2").textContent = "Type: " + dataArray[index].type2;
+    typeButtons(dataArray[index].type2, document.getElementById("Pokemon-type2"));
+    document.getElementById("Pokemon-habitat").textContent = "Habitat: " + dataArray[index].habitat;
+    for (let i = 0; i < dataArray[index].abilities.length; i++) {
+        if(i == 0) {
+            document.getElementById("Pokemon-abilities").textContent = "Abilities: " + dataArray[index].abilities[i].ability.name
+        }
         if(i != 0) {
-            document.getElementById("Pokemon-abilities").textContent += ", " + pokeData[0].abilities[1].ability.name;
+            document.getElementById("Pokemon-abilities").textContent += ", " + dataArray[index].abilities[1].ability.name;
         }
     }
 
-
+    document.getElementById("pokemon-sprites").textContent = "";
     for (let i = 0; i < 8; i++) {
         let sprite = document.createElement("img");
         switch (i) {
             case 0:
-                if (pokeData[0].sprites.front_default == null) {
+                if (dataArray[index].sprites.front_default == null) {
                     sprite.id = "null";
                 }
-                sprite.src = pokeData[0].sprites.front_default
+                sprite.src = dataArray[index].sprites.front_default
                 break;
             case 1:
-                if (pokeData[0].sprites.back_default == null) {
+                if (dataArray[index].sprites.back_default == null) {
                     sprite.id = "null";
                 }
-                sprite.src = pokeData[0].sprites.back_default
+                sprite.src = dataArray[index].sprites.back_default
                 break;
             case 2:
-                if (pokeData[0].sprites.front_female == null) {
+                if (dataArray[index].sprites.front_female == null) {
                     sprite.id = "null";
                 }
-                sprite.src = pokeData[0].sprites.front_female
+                sprite.src = dataArray[index].sprites.front_female
                 break;
             case 3:
-                if (pokeData[0].sprites.back_female == null) {
+                if (dataArray[index].sprites.back_female == null) {
                     sprite.id = "null";
                 }
-                sprite.src = pokeData[0].sprites.back_female
+                sprite.src = dataArray[index].sprites.back_female
                 break;
             case 4:
-                if (pokeData[0].sprites.front_shiny == null) {
+                if (dataArray[index].sprites.front_shiny == null) {
                     sprite.id = "null";
                 }
-                sprite.src = pokeData[0].sprites.front_shiny
+                sprite.src = dataArray[index].sprites.front_shiny
                 break;
             case 5:
-                if (pokeData[0].sprites.back_shiny == null) {
+                if (dataArray[index].sprites.back_shiny == null) {
                     sprite.id = "null";
                 }
-                sprite.src = pokeData[0].sprites.back_shiny
+                sprite.src = dataArray[index].sprites.back_shiny
                 break;
             case 6:
-                if (pokeData[0].sprites.front_shiny_female == null) {
+                if (dataArray[index].sprites.front_shiny_female == null) {
                     sprite.id = "null";
                 }
-                sprite.src = pokeData[0].sprites.front_shiny_female
+                sprite.src = dataArray[index].sprites.front_shiny_female
                 break;
             case 7:
-                if (pokeData[0].sprites.back_shiny_female == null) {
+                if (dataArray[index].sprites.back_shiny_female == null) {
                     sprite.id = "null";
                 }
-                sprite.src = pokeData[0].sprites.back_shiny_female
+                sprite.src = dataArray[index].sprites.back_shiny_female
                 break;
             default:
                 console.log("Switch Error");
@@ -293,17 +294,41 @@ function setPokedexInfo() {
             document.getElementById("pokemon-sprites").append(sprite);
         }
     }
-    document.getElementById("pokemon-link").href = `https://bulbapedia.bulbagarden.net/wiki/${pokeData[0].name.toLowerCase()}_(Pok%C3%A9mon)`
+    document.getElementById("pokemon-link").href = `https://bulbapedia.bulbagarden.net/wiki/${dataArray[index].name.toLowerCase()}_(Pok%C3%A9mon)`
     document.getElementById("pokemon-link").target = "_blank";
 }
 
+function pokedexBack() {
+    if((pokemonByTypes.findIndex(({ name }) => name === document.getElementById("Pokemon-name").textContent.split(" ")[1])) == -1) {
+        setPokedexInfo(pokemonByTypes, 0);
+    }
+    else if((pokemonByTypes.findIndex(({ name }) => name === document.getElementById("Pokemon-name").textContent.split(" ")[1])) == 0) {
+        setPokedexInfo(pokemonByTypes, (pokemonByTypes.length - 1));
+    }
+    else {
+        setPokedexInfo(pokemonByTypes, ((pokemonByTypes.findIndex(({ name }) => name === document.getElementById("Pokemon-name").textContent.split(" ")[1])) - 1));
+    }
+}
+
+function pokedexNext() {
+    if(((pokemonByTypes.findIndex(({ name }) => name === document.getElementById("Pokemon-name").textContent.split(" ")[1])) == -1) || ((pokemonByTypes.findIndex(({ name }) => name === document.getElementById("Pokemon-name").textContent.split(" ")[1])) == (pokemonByTypes.length - 1))) {
+        setPokedexInfo(pokemonByTypes, 0);
+    }
+    else {
+        setPokedexInfo(pokemonByTypes, (pokemonByTypes.findIndex(({ name }) => name === document.getElementById("Pokemon-name").textContent.split(" ")[1]) + 1));
+    }
+}
+
+function pokedexLoad() {
+}
 //------------------------------Executable Code------------------------------
 // Runs on site load to load functions
 document.addEventListener('DOMContentLoaded', async function() {
     await fetchNameIdData();
     await fetchInfoData();
     await fetchInfoData2();
-    console.log(pokeData);
-    setPokedexInfo();
+    pokemonByTypes = pokeData;
+    setPokedexInfo(pokeData, 0);
+    assignIcons(Object.keys(types));
 });
 
