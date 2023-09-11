@@ -33,7 +33,7 @@ const types = {
 //Function to replace a character at a specific string index
 //Input: index = location of string to replace, replacement = What to replace character or string to replace it with
 //Output: Converted string with replacement
-String.prototype.replaceAt = function(index, replacement) {
+String.prototype.replaceAt = function (index, replacement) {
     return this.substr(0, index) + replacement + this.substr(index + 1);
 }
 
@@ -60,7 +60,7 @@ function fetchNameIdData() {
         .then(function (response) {
             //Error throwing if server doesnt respons with 200 status
             if (!(response.status == 200)) {
-                throw new Error("Not 2xx response", {cause: response});
+                throw new Error("Not 2xx response", { cause: response });
             }
             //Formats the response into a JSON object
             return response.json();
@@ -68,11 +68,11 @@ function fetchNameIdData() {
         .then(function (data) {
             //Creates an object with the required keys and values for every pokemon in recieved data and assigns them a name and id before pushing them into the pokeData array
             for (let i = 0; i < 110; i++) {
-                let dataObject = {"id": 0, "name": "null", "type1": "null", "type2" : "null", "flavor_text": "null", "habitat": "null", "stats": {}, "abilities": {}, "sprites": {}};
+                let dataObject = { "id": 0, "name": "null", "type1": "null", "type2": "null", "flavor_text": "null", "habitat": "null", "stats": {}, "abilities": {}, "sprites": {} };
                 dataObject.id = i + 1;
                 dataObject.name = data.results[i].name;
                 pokeData.push(dataObject);
-           }
+            }
         })
         //Catches any error throw from bad server response
         .catch(function (error) {
@@ -89,7 +89,7 @@ async function fetchInfoData() {
             .then(function (response) {
                 //Error throwing if server doesnt respons with 200 status
                 if (!(response.status == 200)) {
-                    throw new Error("Not 2xx response", {cause: response});
+                    throw new Error("Not 2xx response", { cause: response });
                 }
                 //Formats the response into a JSON object
                 return response.json();
@@ -124,7 +124,7 @@ async function fetchMoreInfoData() {
             .then(function (response) {
                 //Error throwing if server doesnt respons with 200 status
                 if (!(response.status == 200)) {
-                    throw new Error("Not 2xx response", {cause: response});
+                    throw new Error("Not 2xx response", { cause: response });
                 }
                 //Formats the response into a JSON object
                 return response.json();
@@ -134,7 +134,7 @@ async function fetchMoreInfoData() {
                 pokeData[i].habitat = data.habitat.name;
                 //Searches through the flav text of the api to find an english varient
                 for (let index = 0; index < data.flavor_text_entries.length; index++) {
-                    if(data.flavor_text_entries[index].language.name == "en") {
+                    if (data.flavor_text_entries[index].language.name == "en") {
                         //Sets flavor text of pokeData and replaces any illigal characters
                         pokeData[i].flavor_text = data.flavor_text_entries[index].flavor_text
                         pokeData[i].flavor_text = pokeData[i].flavor_text.replaceAt(pokeData[i].flavor_text.search("é"), "e")
@@ -158,14 +158,14 @@ async function fetchTypeMatchUpsData() {
             .then(function (response) {
                 //Error throwing if server doesnt respons with 200 status
                 if (!(response.status == 200)) {
-                    throw new Error("Not 2xx response", {cause: response});
+                    throw new Error("Not 2xx response", { cause: response });
                 }
                 //Formats the response into a JSON object
                 return response.json();
             })
             .then(function (data) {
                 //Creates an object with the required keys and values for every type in recieved data and assigns value before pushing them into the typeMatchUp array
-                let dataObject = {"name": "null", "damage_relations": {}};
+                let dataObject = { "name": "null", "damage_relations": {} };
                 dataObject.name = data.name;
                 dataObject.damage_relations = data.damage_relations;
                 typeMatchUps.push(dataObject);
@@ -199,7 +199,7 @@ function getPokeImage(pokeName, targetEl) {
         .then(function (response) {
             //Throws error if server doesnt respond with a 200 code
             if (!(response.status == 200)) {
-                throw new Error("Not 2xx response", {cause: response});
+                throw new Error("Not 2xx response", { cause: response });
             }
             //Formats the response into a JSON object
             return response.json();
@@ -207,7 +207,7 @@ function getPokeImage(pokeName, targetEl) {
         .then(function (data) {
             let pid = data.query.pageids[0];
             //Assigns the target element with the provided image from mediawiki api
-            targetEl.src = data.query.pages[pid].original.source;
+            targetEl.src = await data.query.pages[pid].original.source;
         })
         //Catches any error response from the server
         .catch(function (error) {
@@ -237,7 +237,7 @@ function getTypeIcon(type, targetEl) {
         .then(function (response) {
             //Throws error if server doesnt respond with a 200 code
             if (!(response.status == 200)) {
-                throw new Error("Not 2xx response", {cause: response});
+                throw new Error("Not 2xx response", { cause: response });
             }
             //Formats the response into a JSON object
             return response.json();
@@ -268,12 +268,12 @@ function assignIcons(types) {
         //Assigns the buttons properties and functionality
         typeIcon.title = types[i];
         typeIcon.id = types[i];
-        typeIcon.onclick = function() {
+        typeIcon.onclick = function () {
             //Clears the pokemonByTypes array
             pokemonByTypes = [];
             //Fills the array based on the type of pokemon that match the buttons type
             for (let i = 0; i < pokeData.length; i++) {
-                if((pokeData[i].type1.toLowerCase() == this.id) || (pokeData[i].type2.toLowerCase() == this.id)) {
+                if ((pokeData[i].type1.toLowerCase() == this.id) || (pokeData[i].type2.toLowerCase() == this.id)) {
                     pokemonByTypes.push(pokeData[i]);
                 }
             }
@@ -288,7 +288,7 @@ function assignIcons(types) {
 //Functionality of the pokedex next traversal button
 function pokedexNext() {
     //If the current displayed pokemon is not found in the array, I.E. type buttons sorted it or is at the end of the array. The next pokemon to be displayed is the begining of the array
-    if(((findPokemonIndex(pokemonByTypes, document.getElementById("Pokemon-name").textContent.split(" ")[1])) == -1) || ((findPokemonIndex(pokemonByTypes, document.getElementById("Pokemon-name").textContent.split(" ")[1])) == (pokemonByTypes.length - 1))) {
+    if (((findPokemonIndex(pokemonByTypes, document.getElementById("Pokemon-name").textContent.split(" ")[1])) == -1) || ((findPokemonIndex(pokemonByTypes, document.getElementById("Pokemon-name").textContent.split(" ")[1])) == (pokemonByTypes.length - 1))) {
         setPokedexInfo(pokemonByTypes, 0);
     }
     //If the current displayed pokemon is found in the array. The next pokemon to be displayed is the current loaction plus 1
@@ -300,11 +300,11 @@ function pokedexNext() {
 //Functionality of the pokedex back traversal button
 function pokedexBack() {
     //If the current displayed pokemon is not found in the array, I.E. type buttons sorted it. The next pokemon to be displayed is the begining of the array
-    if((findPokemonIndex(pokemonByTypes, document.getElementById("Pokemon-name").textContent.split(" ")[1])) == -1) {
+    if ((findPokemonIndex(pokemonByTypes, document.getElementById("Pokemon-name").textContent.split(" ")[1])) == -1) {
         setPokedexInfo(pokemonByTypes, 0);
     }
     //If the current displayed pokemon is found in the array, but the index is 0th. The next pokemon to be displayed is the end of the array
-    else if((findPokemonIndex(pokemonByTypes, document.getElementById("Pokemon-name").textContent.split(" ")[1])) == 0) {
+    else if ((findPokemonIndex(pokemonByTypes, document.getElementById("Pokemon-name").textContent.split(" ")[1])) == 0) {
         setPokedexInfo(pokemonByTypes, (pokemonByTypes.length - 1));
     }
     //If the current displayed pokemon is found in the array. The next pokemon to be displayed is the current loaction minus 1
@@ -317,7 +317,7 @@ function pokedexBack() {
 //Input: type = the type of button to create, targetEl = the location of where to set that button
 function typeButtons(type, targetEl) {
     //Function doesnt run if N/A is passed as a type
-    if(type == "N/A") {
+    if (type == "N/A") {
         return;
     }
     //Creates a button element
@@ -421,9 +421,9 @@ function setPokedexInfo(dataArray, index) {
             default:
                 console.log("Switch Error");
                 return;
-          }
+        }
         //If the id of the sprite isnt null it appends it to the page
-        if(!(sprite.id == "null")) {
+        if (!(sprite.id == "null")) {
             document.getElementById("pokemon-sprites").append(sprite);
         }
     }
@@ -441,7 +441,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     await fetchTypeMatchUpsData();
     console.log(typeMatchUps);
     //Only runs this code on pokedex.html load
-    if(this.location.href.split("/poke-match/")[1] == "pokedex.html") {
+    if (this.location.href.split("/poke-match/")[1] == "pokedex.html") {
         pokemonByTypes = pokeData;
         setPokedexInfo(pokeData, 0);
         assignIcons(Object.keys(types));
