@@ -347,6 +347,13 @@ function setPokedexInfo(dataArray, index) {
     document.getElementById("Pokemon-id").textContent = "ID: " + dataArray[index].id;
     document.getElementById("Pokemon-name").textContent = "Name: " + dataArray[index].name;
     document.getElementById("Pokemon-type1").textContent = "Type: " + dataArray[index].type1;
+    document.getElementById("stats-HP").textContent = "HP: " + dataArray[index].stats[0].base_stat;
+    document.getElementById("stats-attack").textContent = "Attack: " + dataArray[index].stats[1].base_stat;
+    document.getElementById("stats-defense").textContent = "Defense: " + dataArray[index].stats[2].base_stat;
+    document.getElementById("stats-special-attack").textContent = "Special Attack: " + dataArray[index].stats[3].base_stat;
+    document.getElementById("stats-special-defense").textContent = "Special Defense: " + dataArray[index].stats[4].base_stat;
+    document.getElementById("stats-speed").textContent = "Speed: " + dataArray[index].stats[5].base_stat;
+
     //Calls the typeButtons function to append a type button next to its type
     typeButtons(dataArray[index].type1, document.getElementById("Pokemon-type1"));
     document.getElementById("Pokemon-type2").textContent = "Type: " + dataArray[index].type2;
@@ -444,6 +451,13 @@ document.addEventListener('DOMContentLoaded', async function () {
         pokemonByTypes = pokeData;
         setPokedexInfo(pokeData, 0);
         assignIcons(Object.keys(types));
+        console.log(pokeData);
     }
 });
+
+
+
+
+
+
 
