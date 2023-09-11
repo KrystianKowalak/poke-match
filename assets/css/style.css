@@ -181,3 +181,13 @@
 #homeRight {
     margin: 0 5em 0 0;
 }
+<<<<<<< HEAD
+=======
+
+/*------------------------------Game------------------------------*/
+
+#choices-container{
+    display: flex;
+    justify-content: center;
+}
+>>>>>>> a6ad169d3729d1ca5df532b2c0a06f2784624b06
