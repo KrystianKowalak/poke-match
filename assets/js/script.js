@@ -56,7 +56,7 @@ function findPokemonObject(array, pokemonName) {
 //Initial fetch call to pokieapi for pokeData that also initzilizes the array with objects
 function fetchNameIdData() {
     //Sends request to pokeapi
-    return fetch("https://pokeapi.co/api/v2/pokemon-species/?offset=0&limit=110")
+    return fetch("https://pokeapi.co/api/v2/pokemon-species/?offset=0&limit=151")
         .then(function (response) {
             //Error throwing if server doesnt respons with 200 status
             if (!(response.status == 200)) {
@@ -67,7 +67,7 @@ function fetchNameIdData() {
         })
         .then(function (data) {
             //Creates an object with the required keys and values for every pokemon in recieved data and assigns them a name and id before pushing them into the pokeData array
-            for (let i = 0; i < 110; i++) {
+            for (let i = 0; i < 151; i++) {
                 let dataObject = { "id": 0, "name": "null", "type1": "null", "type2": "null", "flavor_text": "null", "habitat": "null", "stats": {}, "abilities": {}, "sprites": {} };
                 dataObject.id = i + 1;
                 dataObject.name = data.results[i].name;
@@ -83,7 +83,7 @@ function fetchNameIdData() {
 //Fetch call to pokieapi that retrieves more info for pokeData array
 async function fetchInfoData() {
     //For every object in the pokeData array the code runs a fetch call
-    for (let i = 0; i < 110; i++) {
+    for (let i = 0; i < 151; i++) {
         //Sends request to pokeapi
         await fetch("https://pokeapi.co/api/v2/pokemon/" + (i + 1))
             .then(function (response) {
@@ -118,7 +118,7 @@ async function fetchInfoData() {
 //Fetch call to pokieapi that retrieves more info for pokeData array
 async function fetchMoreInfoData() {
     //For every object in the pokeData array the code runs a fetch call
-    for (let i = 0; i < 110; i++) {
+    for (let i = 0; i < 151; i++) {
         //Sends request to pokeapi
         await fetch("https://pokeapi.co/api/v2/pokemon-species/" + (i + 1))
             .then(function (response) {
@@ -331,7 +331,7 @@ function typeButtons(type, targetEl) {
     typeButton.style.setProperty("background-color", types[type.toLowerCase()]);
     typeButton.style.setProperty("color", "white");
     typeButton.onclick = function () {
-        console.log(typeButton.textContent);
+        //console.log(typeButton.textContent);
     };
     //Appends the button to the location passed to it
     targetEl.append(typeButton);
@@ -451,7 +451,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         pokemonByTypes = pokeData;
         setPokedexInfo(pokeData, 0);
         assignIcons(Object.keys(types));
-        console.log(pokeData);
     }
 });
 
