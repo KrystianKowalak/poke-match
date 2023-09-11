@@ -40,10 +40,10 @@
         </section>
 
         <div class="card card-right col s12 m9">
-            <a class="waves-effect waves-light btn red">
+            <a class="waves-effect waves-light btn red" onclick="pokedexBack()">
                 <i class="material-icons left">arrow_back</i>back
             </a>
-            <a class="waves-effect waves-light btn red">
+            <a class="waves-effect waves-light btn red" onclick="pokedexNext()">
                 <i class="material-icons right">arrow_forward</i>next
             </a>
             <section class="row">
@@ -51,26 +51,28 @@
                     <section class="card pokedex-section pokemon">
                         <img id="pokedex-image" alt="">
                     </section>
-                    <section class="card pokedex-section grey lighten-2">
+                    <section class="card pokedex-section grey lighten-2" id = "flavorInfo">
                         <p id="flavor-text"></p>
                     </section>
                 </section>
                 <section class="col s12 m6">
-                    <section class="card pokedex-section grey lighten-2">
+                    <section class="card pokedex-section grey lighten-2" id = "pokemon-info">
                         <p id="Pokemon-id"></p>
                         <p id="Pokemon-name"></p>
                         <p id="Pokemon-type1"></p>
                         <p id="Pokemon-type2"></p>
+                        <p id="Pokemon-habitat"></p>
+                        <p id="Pokemon-abilities"></p>
                     </section>
-                    <section class="card pokedex-section grey lighten-2">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis sapiente qui maxime
-                        neque, ducimus repudiandae nulla eum, est expedita delectus recusandae minima dolore. Molestiae
-                        rerum, esse eveniet iusto tempora nesciunt.
+                    <section class="card pokedex-section grey lighten-2" id = "pokemon-sprites">
                     </section>
-                    <section class="card pokedex-section grey lighten-2">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia similique odit nihil, unde tenetur
-                        exercitationem quibusdam iure voluptatibus obcaecati aperiam omnis. Voluptate quis, quia
-                        exercitationem quisquam inventore iste dolorem doloribus.
+                    <section class="card pokedex-section grey lighten-2" id="statsInfo">
+                       <p id="stats-HP"></p>
+                       <p id="stats-attack"></p>
+                       <p id="stats-defense"></p>
+                       <p id="stats-special-attack"></p>
+                       <p id="stats-special-defense"></p>
+                        <p id="stats-speed"></p>  
                     </section>
                     <a class="waves-effect waves-light btn red" id="pokemon-link">
                         <i class="material-icons right">info_outline</i>More Info

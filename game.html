@@ -6,14 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./assets/css/reset.css">
-    <!-- linked icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.0.2-alpha/dist/css/materialize.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <script defer
         src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.0.2-alpha/dist/js/materialize.min.js"></script>
     <script defer src="./assets/js/script.js"></script>
+    <script defer src="./assets/js/gamescript.js"></script>
     <title>PokeGame</title>
 </head>
 
@@ -21,57 +20,50 @@
 <body id="container90" class="container-90">
     <header>
         <div class="pokeTitle">
-            <img src="./assets/img/Match.gif" alt="" id="matchGif">
+            <img src="./assets/img/Match.gif" alt="match with pikachu" id="matchGif">
     </header>
     <main class="row">
         <div id="battleCard" class="cardLeft col s12 m4 left center-align">
             <div class="col s12 m3">
                 <div class="card blue-grey darken-1" id="card-left">
                     <div class="white-text">
-                        <h2 class="game-h2" id="index-h2">Game Battle!</h2>
+                        <h2 class="game-h2" id="index-h2">Type Battle!</h2>
                         <p>
-                        <h6>Fight! 
-                            <br> 
-                            Pick the correct Pokemon to increase!</h6>
-                    </p>
+                        <h6>Fight!
+                            <br>
+                            Test your pokemon type matchup knowledge!
+                        </h6>
+                        </p>
                         <hr>
                         <p>
-                        <h6>PICK THE WRONG POKEMON AND LOSE A LIFE!</h6>
+                        <h6>You start with 3 lives and you lose 1 when you make a mistake!</h6>
                         </p>
                     </div>
-                    <!-- <a class="btn-floating waves-effect waves-light btn-medium pulse red white-text">START
-                        <i class="material-icons white-text" href="">play_circle_outline</i></a>
-                    <a id="btn-floating" class="btn-floating waves-effect waves-light btn-medium pulse red white-text"
-                        id="startButton">HOME
-                        <i class="material-icons white-text" href="">play_circle_outline</i></a> -->
                     <div class="card horizontal">
 
                         <div class="card-stacked">
-                            <div class="card-content">
-                                <p>
+                            <div class="card-content" id = "lives-parent">
+                                <p id="lives">
                                     Lives:
                                 </p>
 
-                                <p>
+                                <p id="score">
                                     Score:
                                 </p>
                             </div>
                         </div>
-                     </div>
-                        <div class="card horizontal">
-                            <div class="card-stacked">
-                                <div class="card-content">
-                                    <!-- <p> -->
-                                        <a class="waves-effect waves-light btn red" ><i class="material-icons right">games</i>START</a>
-                                    <!-- </p>
-
-                                    <p> -->
-                                        <a class="waves-effect waves-light btn red"><i class="material-icons right">home</i>Home</a>
-                                    <!-- </p> -->
-                                </div>
+                    </div>
+                    <div class="card horizontal">
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <a id="start-button" class="waves-effect waves-light btn red"><i
+                                        class="material-icons right">TEST</i></a>
+                                <a id="home-button" href="./index.html" class="waves-effect waves-light btn red"><i
+                                        class="material-icons right">home</i></a>
                             </div>
                         </div>
-                    
+                    </div>
+
                 </div>
 
             </div>
@@ -83,13 +75,14 @@
                 <div id="player1" class="col s12 m6">
 
                     <div class="card card-right">
-                        <h6>PLAYER 1 </h6>
+                        <h6 id="card-1-name">??????</h6>
                         <div class="card-image">
-                            <img src="./assets/img/0002Ivysaur.png">
+                            <img id="poke1" src="https://archives.bulbagarden.net/media/upload/9/98/Missingno_RB.png">
 
                         </div>
                         <div class="card-content grey lighten-2" id="midCard">
-                            <p>INFO.</p>
+                            <section id="card-1-type-1" class="type-container">Type-1: </section>
+                            <section id="card-1-type-2" class="type-container">Type-2: </section>
                         </div>
                     </div>
 
@@ -97,41 +90,58 @@
 
                 <div id="player2" class="col s12 m6">
                     <div class="card card-right">
-                        <h6>PLAYER 2 </h6>
+                        <h6 id="card-2-name">??????</h6>
                         <div class="card-image">
-                            <img src="./assets/img/0002Ivysaur.png">
+                            <img id="poke2" src="https://archives.bulbagarden.net/media/upload/9/98/Missingno_RB.png">
 
                         </div>
                         <div class="card-content grey lighten-2" id="rightCard">
-                            <p>INFO</p>
+                            <section id="card-2-type-1" class="type-container">Type-1: </section>
+                            <section id="card-2-type-2" class="type-container">Type-2: </section>
                         </div>
                     </div>
 
                 </div>
 
                 <div class="col s6 offset-s3">
-                    <h2 class="header"></h2>
+                    <h2 id="timer" class="header"></h2>
                     <div class="card horizontal">
 
                         <div class="card-stacked">
-                            <div class="card-content">
-                                <h3 class="winnerTab"> Pick the Winner!</h3>
-                                <p>
-                                    <label>
-                                        <input type="checkbox" class="filled-in checkbox-red" checked="checked" />
-                                        <span>player 1</span>
-                                    </label>
-                                </p>
-                                <p>
-                                    <label>
-                                        <input type="checkbox" class="filled-in" checked="checked" />
-                                        <span>player 2</span>
-                                    </label>
-                                </p>
-                            </div>
-                            <div class="card-action" class="red-text">
-                                <a href="#">FIGHT!</a>
-                            </div>
+
+
+
+                            <form id="choice-select">
+                                <div class="card-content">
+                                    <h3 class="winnerTab"> How effective will the move be against the target?</h3>
+                                    <div id="choices-container">
+                                        <p>
+                                            <label for="super-effective">
+                                                <input name="group1" type="radio" class="choice" id="super-effective" />
+                                                <span>Super-Effective</span>
+                                            </label>
+                                        </p>
+                                        <p>
+                                            <label for="not-effective">
+                                                <input name="group1" type="radio" class="choice" id="not-effective" />
+                                                <span>Not Very Effective</span>
+                                            </label>
+                                        </p>
+                                    </div>
+                                    <br>
+                                    <p>
+                                        <label for="neutral">
+                                            <input name="group1" type="radio" class="choice" id="neutral"/>
+                                            <span>Neurtal</span>
+                                        </label>
+                                    </p>
+                                </div>
+                                <div class="card-action" class="red-text">
+                                    <button id="fight-button">CHOOSE</button>
+                                </div>
+                            </form>
+
+
                         </div>
                     </div>
                 </div>
@@ -148,12 +158,11 @@
 
 <!-- <p>
     <label>
-      <input type="checkbox" class="filled-in" checked="checked" />
-      <span>Filled in</span>
+        <input type="checkbox" class="filled-in" checked="checked" />
+        <span>Filled in</span>
     </label>
-  </p> -->
+</p>
 
 
-<!-- <a class="btn-floating halfway-fab waves-effect waves-light btn-medium pulse red white-text">start
-    <i
-        class="material-icons white-text" href="">play_circle_outline</i></a> -->
+<a class="btn-floating halfway-fab waves-effect waves-light btn-medium pulse red white-text">start
+    <i class="material-icons white-text" href="">play_circle_outline</i></a> -->
