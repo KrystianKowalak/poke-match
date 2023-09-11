@@ -1,4 +1,5 @@
 const startButtonEl = document.querySelector("#start-button")
+const fightButton = document.querySelector("#fight-button")
 
 // counts down from 10 and updates the element referenced by timerEl to reflect it every 1000 ms
 function timer() {
@@ -20,7 +21,7 @@ function timer() {
 function init() {
     const lives = document.querySelector("#lives");
     const score = document.querySelector("#score");
-    lives.textContent = "Lives: 3";
+    lives.textContent = "Lives: ";
     score.textContent = "Score: 0";
 };
 
@@ -37,12 +38,12 @@ function updateCards() {
     const poke2 = randomPoke(); //holds pokemon object for the right card
     const pokeimg1 = document.querySelector("#poke1");
     const pokeimg2 = document.querySelector("#poke2");
-    const pokeName1 = document.querySelector("#card-1-name")
-    const pokeName2 = document.querySelector("#card-2-name")
-    const card1Type1 = document.getElementById("card-1-type-1")
-    const card1Type2 = document.getElementById("card-1-type-2")
-    const card2Type1 = document.getElementById("card-2-type-1")
-    const card2Type2 = document.getElementById("card-2-type-2")
+    const pokeName1 = document.querySelector("#card-1-name");
+    const pokeName2 = document.querySelector("#card-2-name");
+    const card1Type1 = document.getElementById("card-1-type-1");
+    const card1Type2 = document.getElementById("card-1-type-2");
+    const card2Type1 = document.getElementById("card-2-type-1");
+    const card2Type2 = document.getElementById("card-2-type-2");
     const typeContainers = document.querySelectorAll(".type-container");
 
     //removes the leftover buttons from the previous card
@@ -76,22 +77,30 @@ function updateCards() {
     retrieveImages();
 };
 
-function checkAnswer (choice, types1, types2){
-    
-}
-
-function formSubmitHandler () {
-    
-}
+function checkAnswer(playerChoice){
+    let correctAnswer = pickWinner( );
+};
 
 
 
-
+function fightButtonHandler(event) {
+    event.preventDefault();
+    const choices = document.querySelectorAll(".choice");
+    let selection;
+    let answer = correctAnswerFunction();
+    choices.forEach((element, index) => {
+        if (element.checked == true) {
+            selection = index;
+        }
+    });
+    // 0 = Super-effective, 1 = Not Effective, 2 = Neutral
+    checkAnswer(selection)
+};
 
 // sequence of functions to run when the game begins
 function startGame() {
     console.log("You clicked the start button!");
-    // timer();
+    // timer(); 
     init();
     // roundStart();
     updateCards();
@@ -104,4 +113,4 @@ function roundStart() {
 
 // Event listener to run startGame function when the start button is clicked
 startButtonEl.addEventListener("click", startGame);
-
+fightButton.addEventListener("click", fightButtonHandler);

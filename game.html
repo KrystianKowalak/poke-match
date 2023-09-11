@@ -108,32 +108,40 @@
                     <div class="card horizontal">
 
                         <div class="card-stacked">
-                            <div class="card-content">
-                                <h3 class="winnerTab"> Who has the type advantage?</h3>
-                                <form id="choiceSelect">
+
+
+
+                            <form id="choice-select">
+                                <div class="card-content">
+                                    <h3 class="winnerTab"> How effective will the move be against the target?</h3>
+                                    <div id="choices-container">
+                                        <p>
+                                            <label for="super-effective">
+                                                <input name="group1" type="radio" class="choice" id="super-effective" />
+                                                <span>Super-Effective</span>
+                                            </label>
+                                        </p>
+                                        <p>
+                                            <label for="not-effective">
+                                                <input name="group1" type="radio" class="choice" id="not-effective" />
+                                                <span>Not Very Effective</span>
+                                            </label>
+                                        </p>
+                                    </div>
+                                    <br>
                                     <p>
-                                        <label>
-                                            <input type="checkbox" class="filled-in" checked="checked" />
-                                            <span>LEFT POKE</span>
+                                        <label for="neutral">
+                                            <input name="group1" type="radio" class="choice" id="neutral"/>
+                                            <span>Neurtal</span>
                                         </label>
                                     </p>
-                                    <p>
-                                        <label>
-                                            <input type="checkbox" class="filled-in" checked="checked" />
-                                            <span>RIGHT POKE</span>
-                                        </label>
-                                    </p>
-                                    <p>
-                                        <label>
-                                            <input type="checkbox" class="filled-in" checked="checked" />
-                                            <span>NEITHER</span>
-                                        </label>
-                                    </p>
-                                </form>
-                            </div>
-                            <div class="card-action" class="red-text">
-                                <button class="">FIGHT!</button>
-                            </div>
+                                </div>
+                                <div class="card-action" class="red-text">
+                                    <button id="fight-button">CHOOSE</button>
+                                </div>
+                            </form>
+
+
                         </div>
                     </div>
                 </div>
