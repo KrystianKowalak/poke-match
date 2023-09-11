@@ -27,10 +27,7 @@ function init() {
 //returns a random pokemon object from pokeData
 function randomPoke() {
     const max = pokeData.length;
-    // console.log(`There are ${maxPoke} pokemon stored in the array`);
     let index = Math.floor(Math.random() * max); //a random index value within the pokeData object
-    // console.log(`The index number is ${index}`);
-    // console.log(`It's ${pokeData[index].name}!`);
     return pokeData[index];
 };
 
@@ -48,14 +45,16 @@ function updateCards() {
     const card2Type2 = document.getElementById("card-2-type-2")
     const typeContainers = document.querySelectorAll(".type-container");
 
+    pickWinner(poke1, poke2.type1);
+
     //removes the leftover buttons from the previous card
     function resetButtons(target) {
         target.forEach((element) => {
             if (element.children.length == 0) {
-                console.log(`no button in type container ${element.id}}`)
+                //console.log(`no button in type container ${element.id}}`)
             }
             else {
-                console.log(`Removing children of ${element.id}`)
+                //console.log(`Removing children of ${element.id}`)
                 element.children.item(0).remove();
             }
         })
@@ -79,6 +78,41 @@ function updateCards() {
     retrieveImages();
 };
 
+function pickWinner (pokemon, attackType) {
+    attackType = attackType.toLowerCase();
+    let index = findPokemonIndex(typeMatchUps, pokemon.type1.toLowerCase())
+        for (let i = 0; i < typeMatchUps[index].damage_relations.no_damage_from.length; i++) {
+            if(typeMatchUps[index].damage_relations.no_damage_from[i].name == attackType) {
+                return 0;
+            }
+        }
+        for (let i = 0; i < typeMatchUps[index].damage_relations.half_damage_from.length; i++) {
+            if(typeMatchUps[index].damage_relations.half_damage_from[i].name == attackType) {
+                return 0.5
+            }
+        }
+        for (let i = 0; i < typeMatchUps[index].damage_relations.double_damage_from.length; i++) {
+            if(typeMatchUps[index].damage_relations.double_damage_from[i].name == attackType) {
+                return 2;
+            }
+        }
+        return 1;
+}
+
+function appendLives() {
+    let iconContainer = document.createElement("div");
+    iconContainer.id = "lives-div";
+
+    for (let i = 0; i < 3; i++) {
+        let heartIcon = document.createElement("img");
+        heartIcon.src = "./assets/images/Pokeball.png"
+        heartIcon.style.setProperty("width", "45px");
+        heartIcon.class = "hearts";
+        iconContainer.append(heartIcon);
+    }
+    document.getElementById("lives").append(iconContainer);
+}
+
 // sequence of functions to run when the game begins
 function startGame() {
     console.log("You clicked the start button!");
@@ -86,6 +120,7 @@ function startGame() {
     // init();
     // roundStart();
     updateCards();
+    appendLives()
 };
 
 // sequence of functions to fun when a new round begins

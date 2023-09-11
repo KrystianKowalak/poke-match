@@ -439,7 +439,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     await fetchInfoData();
     await fetchMoreInfoData();
     await fetchTypeMatchUpsData();
-    console.log(typeMatchUps);
     //Only runs this code on pokedex.html load
     if (this.location.href.split("/poke-match/")[1] == "pokedex.html") {
         pokemonByTypes = pokeData;
