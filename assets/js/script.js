@@ -331,7 +331,7 @@ function typeButtons(type, targetEl) {
     typeButton.style.setProperty("background-color", types[type.toLowerCase()]);
     typeButton.style.setProperty("color", "white");
     typeButton.onclick = function () {
-        console.log(typeButton.textContent);
+        //console.log(typeButton.textContent);
     };
     //Appends the button to the location passed to it
     targetEl.append(typeButton);
@@ -451,7 +451,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         pokemonByTypes = pokeData;
         setPokedexInfo(pokeData, 0);
         assignIcons(Object.keys(types));
-        console.log(pokeData);
     }
 });
 
