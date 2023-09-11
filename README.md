@@ -18,7 +18,10 @@ This is the Pokedex page. On the left side, there are many type options availabl
 
 ## Technologies
 https://materializecss.com/
+
 https://pokeapi.co/docs/v2
+
 https://www.mediawiki.org/wiki/API:REST_API/Reference
+
 
 ## Deployed Website Link
