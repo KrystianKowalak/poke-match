@@ -27,16 +27,16 @@
             <div class="col s12 m3">
                 <div class="card blue-grey darken-1" id="card-left">
                     <div class="white-text">
-                        <h2 class="game-h2" id="index-h2">Game Battle!</h2>
+                        <h2 class="game-h2" id="index-h2">Type Battle!</h2>
                         <p>
                         <h6>Fight!
                             <br>
-                            Pick the correct Pokemon to increase!
+                            Test your pokemon type matchup knowledge!
                         </h6>
                         </p>
                         <hr>
                         <p>
-                        <h6>PICK THE WRONG POKEMON AND LOSE A LIFE!</h6>
+                        <h6>You start with 3 lives and you lose 1 when you make a mistake!</h6>
                         </p>
                     </div>
                     <div class="card horizontal">
@@ -59,7 +59,7 @@
                                 <a id="start-button" class="waves-effect waves-light btn red"><i
                                         class="material-icons right">TEST</i></a>
                                 <a id="home-button" href="./index.html" class="waves-effect waves-light btn red"><i
-                                        class="material-icons right">home</i>Home</a>
+                                        class="material-icons right">home</i></a>
                             </div>
                         </div>
                     </div>
@@ -109,22 +109,30 @@
 
                         <div class="card-stacked">
                             <div class="card-content">
-                                <h3 class="winnerTab"> Pick the Winner!</h3>
-                                <p>
-                                    <label>
-                                        <input type="checkbox" class="filled-in checkbox-red" checked="checked" />
-                                        <span>player 1</span>
-                                    </label>
-                                </p>
-                                <p>
-                                    <label>
-                                        <input type="checkbox" class="filled-in" checked="checked" />
-                                        <span>player 2</span>
-                                    </label>
-                                </p>
+                                <h3 class="winnerTab"> Who has the type advantage?</h3>
+                                <form id="choiceSelect">
+                                    <p>
+                                        <label>
+                                            <input type="checkbox" class="filled-in" checked="checked" />
+                                            <span>LEFT POKE</span>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label>
+                                            <input type="checkbox" class="filled-in" checked="checked" />
+                                            <span>RIGHT POKE</span>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label>
+                                            <input type="checkbox" class="filled-in" checked="checked" />
+                                            <span>NEITHER</span>
+                                        </label>
+                                    </p>
+                                </form>
                             </div>
                             <div class="card-action" class="red-text">
-                                <a href="#">FIGHT!</a>
+                                <button class="">FIGHT!</button>
                             </div>
                         </div>
                     </div>

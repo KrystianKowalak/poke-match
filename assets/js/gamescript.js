@@ -20,17 +20,14 @@ function timer() {
 function init() {
     const lives = document.querySelector("#lives");
     const score = document.querySelector("#score");
-    lives.textContent += " 3";
-    score.textContent += "0";
+    lives.textContent = "Lives: 3";
+    score.textContent = "Score: 0";
 };
 
 //returns a random pokemon object from pokeData
 function randomPoke() {
     const max = pokeData.length;
-    // console.log(`There are ${maxPoke} pokemon stored in the array`);
     let index = Math.floor(Math.random() * max); //a random index value within the pokeData object
-    // console.log(`The index number is ${index}`);
-    // console.log(`It's ${pokeData[index].name}!`);
     return pokeData[index];
 };
 
@@ -79,11 +76,23 @@ function updateCards() {
     retrieveImages();
 };
 
+function checkAnswer (choice, types1, types2){
+    
+}
+
+function formSubmitHandler () {
+    
+}
+
+
+
+
+
 // sequence of functions to run when the game begins
 function startGame() {
     console.log("You clicked the start button!");
     // timer();
-    // init();
+    init();
     // roundStart();
     updateCards();
 };
@@ -95,3 +104,4 @@ function roundStart() {
 
 // Event listener to run startGame function when the start button is clicked
 startButtonEl.addEventListener("click", startGame);
+
