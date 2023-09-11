@@ -207,7 +207,7 @@ function getPokeImage(pokeName, targetEl) {
         .then(function (data) {
             let pid = data.query.pageids[0];
             //Assigns the target element with the provided image from mediawiki api
-            targetEl.src = await data.query.pages[pid].original.source;
+            targetEl.src = data.query.pages[pid].original.source;
         })
         //Catches any error response from the server
         .catch(function (error) {
