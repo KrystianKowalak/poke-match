@@ -1,62 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/reset.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.0.2-alpha/dist/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.0.2-alpha/dist/css/materialize.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.0.2-alpha/dist/js/materialize.min.js"></script>
+    <script defer
+        src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.0.2-alpha/dist/js/materialize.min.js"></script>
     <script defer src="./assets/js/script.js"></script>
     <title>Pokédex</title>
 </head>
 
-<body>
-    <header id = "pokedex-header">
-        <h1 id = "pokedex-h1">Pokédex</h1>
+<body class="container-90">
+
+    <header id="pokedex-header">
+        <div class="pokeTitle">
+            <img src="./assets/img/PokeDex.gif" alt="" id="pokeMatch">
+        </div>
     </header>
-    <main id = "pokedex-main">
-        <section class = "pokedex-section pokedex-left">
-            <aside id = "pokedex-aside">
-                <p id = "p-types">Types</p>
-                <div id = "line"></div>
-                <section class = "pokedex-section types">
-                </section>
-                <button id = "home-button">Home</button>
-            </aside>
-        </section>
-        <section class = "pokedex-section pokedex-right">
-            <section class = "pokedex-section pokemon">
-                <div id = "buttons-div">
-                    <button class = "navigation-button">back</button>
-                    <button class = "navigation-button">next</button>
-                </div>
-                <section class = "pokedex-section display">
-                    <img id = "pokedex-image"  src="./assets/images/Ivysaur.png" alt="Place Holder">
-                </section>
-                    <section class = "pokedex-section details">
-                        <p id = "flavor-text"></p>
+
+    <main class="row center" id="pokedex-main">
+
+        <section class="col s12 m3 pokedex-left center-align">
+            <section class="card blue-grey darken-1 white-text" id="types-left">
+                <p id="p-types">Types
+                </p>
+                <div class="card horizontal iconPad">
+                    <section class="types iconpad" id="pokedex-aside">
                     </section>
-            </section>
-            <section class = "pokedex-section info">
-                <section class = "pokedex-section facts">
-                    <p id = "Pokemon-id"></p>
-                    <p id = "Pokemon-name"></p>
-                    <p id = "Pokemon-type1"></p>
-                    <p id = "Pokemon-type2"></p>
-                </section>
-                <section class = "pokedex-section stuff">
-                    
-                </section>
-                <section class = "pokedex-section stuff2">
-                    
-                </section>
-                <div id = "link">
-                    <p>More info at: </p>
-                    <a id = "pokemon-link" href=""></a>.
                 </div>
+                <a class="card waves-effect waves-light btn red" id="pHome" href="./index.html">
+                    <i class="material-icons right">home</i>Home
+                </a>
             </section>
         </section>
+
+        <div class="card card-right col s12 m9">
+            <a class="waves-effect waves-light btn red" onclick="pokedexBack()">
+                <i class="material-icons left">arrow_back</i>back
+            </a>
+            <a class="waves-effect waves-light btn red" onclick="pokedexNext()">
+                <i class="material-icons right">arrow_forward</i>next
+            </a>
+            <section class="row">
+                <section class="col s12 m6" id="move">
+                    <section class="card pokedex-section pokemon">
+                        <img id="pokedex-image" alt="">
+                    </section>
+                    <section class="card pokedex-section grey lighten-2">
+                        <p id="flavor-text"></p>
+                    </section>
+                </section>
+                <section class="col s12 m6">
+                    <section class="card pokedex-section grey lighten-2" id = "pokemon-info">
+                        <p id="Pokemon-id"></p>
+                        <p id="Pokemon-name"></p>
+                        <p id="Pokemon-type1"></p>
+                        <p id="Pokemon-type2"></p>
+                        <p id="Pokemon-habitat"></p>
+                        <p id="Pokemon-abilities"></p>
+                    </section>
+                    <section class="card pokedex-section grey lighten-2" id = "pokemon-sprites">
+                    </section>
+                    <section class="card pokedex-section grey lighten-2">
+                        TYPE MATCHUP INFO WILL BE HERE
+                    </section>
+                    <a class="waves-effect waves-light btn red" id="pokemon-link">
+                        <i class="material-icons right">info_outline</i>More Info
+                    </a>
+                </section>
+            </section>
+        </div>
+        
     </main>
+
 </body>
+
 </html>
